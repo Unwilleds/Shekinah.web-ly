@@ -18,4 +18,3 @@ $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
 $mail->isHTML(true); 
 return $mail;
-?>

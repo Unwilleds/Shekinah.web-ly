@@ -25,7 +25,7 @@ function createParallaxGallery({
     cardClass,
     easing = 0.05,
   }) {
-    const gallery = document.getElementById(galleryId);
+    const gallery = document.getElementById(galleryId); 
     const track = document.getElementById(trackId);
     const cards = document.querySelectorAll(`.${cardClass}`);
     let startY = 0;
@@ -83,4 +83,18 @@ function createParallaxGallery({
     cardClass: 'contents',
     easing: 0.05,
   });
+
+  $(function() {
+    var text = $(".text");
+    $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+  
+      if (scroll >= 3200) {
+        text.removeClass("hidden");
+      } else {
+        text.addClass("hidden");
+      }
+    });
+  });
+  
   
