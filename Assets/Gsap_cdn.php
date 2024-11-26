@@ -1,2 +1,2 @@
 
-<script src="../JS/script.js" type="text/javascript" defer></script>
+<script src="../JS/script.js" type="module" defer></script>

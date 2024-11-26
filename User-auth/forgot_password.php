@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password</title>
     <?php
-        require_once __DIR__ . '/../Assets/User_auth_head.php';
+    require_once __DIR__ . '/../Assets/User_auth_head.php';
     ?>
     <style>
         .container h1 {
             margin-top: .5em;
         }
+
         .form input[type="submit"] {
             margin-bottom: 0;
             margin-top: 1em;
         }
+
         .form #inputs input[type="email"] {
             border: 1px solid rgb(164, 164, 165);
             border-radius: 5px;
         }
+
         .container a {
             font-size: 24px;
             text-decoration: none;
@@ -26,25 +30,31 @@
             padding-block: .5em;
             font-weight: bold;
         }
+
         .header {
             display: flex;
             gap: 3em;
             align-items: center;
         }
+
         .success {
             color: green;
         }
+
         .errors {
             color: red;
         }
     </style>
 
 </head>
+
 <body>
-    <div class="container">
+    <div class="auth-container container">
         <div class="header">
-            <a href="./user_login.php"><i class="fa-solid fa-arrow-left"></i></a>
-            <center><h1>Forgot Password</h1></center>
+            <a class="a" href="./user_login.php"><i class="fa-solid fa-arrow-left"></i></a>
+            <center>
+                <h1>Forgot Password</h1>
+            </center>
         </div>
 
         <?php
@@ -93,15 +103,18 @@
         }
         ?>
 
-        <form action="" method="post" class="form" >
+        <form action="" method="post" class="form">
             <div id="inputs">
-                <input type="email" id="email" name="email" placeholder="Enter your Email" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>" required autocomplete="false"> 
+                <input type="email" id="email" name="email" placeholder="Enter your Email"
+                    value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>" required
+                    autocomplete="false">
             </div>
             <input type="submit" name="send" value="Send" class="send">
         </form>
     </div>
     <?php
-        require_once __DIR__ . '/../Assets/Html_footer.php';
+    require_once __DIR__ . '/../Assets/Html_footer.php';
     ?>
 </body>
+
 </html>
