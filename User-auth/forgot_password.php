@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
+    <title>Shekinah | Forgot Password</title>
+  <link rel="icon" type="image/x-icon" href="/../Images/favico.svg">
+
     <?php
     require_once __DIR__ . '/../Assets/User_auth_head.php';
     ?>
     <style>
         .container h1 {
             margin-top: .5em;
+            margin-bottom: 1em;
         }
 
         .form input[type="submit"] {
@@ -21,15 +24,9 @@
         .form #inputs input[type="email"] {
             border: 1px solid rgb(164, 164, 165);
             border-radius: 5px;
+            width: 100%;
         }
 
-        .container a {
-            font-size: 24px;
-            text-decoration: none;
-            color: black;
-            padding-block: .5em;
-            font-weight: bold;
-        }
 
         .header {
             display: flex;
@@ -50,12 +47,10 @@
 
 <body>
     <div class="auth-container container">
-        <div class="header">
-            <a class="a" href="./user_login.php"><i class="fa-solid fa-arrow-left"></i></a>
+        <a class="a" href="./user_login.php"><i class="fa-solid fa-arrow-left"></i></a>
             <center>
                 <h1>Forgot Password</h1>
             </center>
-        </div>
 
         <?php
 
@@ -79,7 +74,8 @@
 
                 if ($mysqli->affected_rows) {
 
-                    $mail = require __DIR__ . "/Mailer/mailer.php";
+                    $mail = require __DIR__ . "/../User-auth/Mailer/mailer.php";
+                   
 
                     $mail->setFrom("noreply@example.com");
                     $mail->addAddress($email);

@@ -4,7 +4,6 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
   font-family: 'Rounded Elegance', Arial, Helvetica, sans-serif;
 }
@@ -43,7 +42,8 @@ html{
 body {
   background-color: var(--base-color);
   overflow-x: hidden;
-  
+  padding: 0;
+
 }
 
 .navigation {
@@ -188,6 +188,14 @@ body {
   text-decoration: none;
   font-size: 1em;
   transition: all 1.5s cubic-bezier(0.7, 0.1, 0.2, 0.9);
+}
+
+
+
+.login-btn-grps .login-btn.red:hover{
+  color: #ffffff !important;
+  transition: all 0.4s cubic-bezier(0.7, 0.1, 0.2, 0.9);
+  background-color: rgb(255, 67, 34);
 }
 
 .login-btn-grps .login-btn:hover,

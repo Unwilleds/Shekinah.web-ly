@@ -5,10 +5,7 @@ $isLoggedIn = isset($_SESSION['user']);
 $username = $isLoggedIn ? $_SESSION["full_name"] : null;
 
 
-$registrationSuccess = isset($_SESSION["registration_success"]) ? $_SESSION["registration_success"] : null;
-if ($registrationSuccess) {
-    unset($_SESSION["registration_success"]);
-}
+
 ?>
 
 <!DOCTYPE html>

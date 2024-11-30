@@ -3,7 +3,7 @@
 $hostname = "localhost";
 $dbUser = "root";
 $dbPassword = "";
-$dbName = "login-register";
+$dbName = "Shekinah.web";
 $conn = mysqli_connect($hostname, $dbUser, $dbPassword, $dbName);
 
 if(!$conn){
