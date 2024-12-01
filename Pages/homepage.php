@@ -37,10 +37,15 @@ if ($registrationSuccess) {
   <main id="container">
     <div class="fv">
       <section class="s1 dissolve">
-        <img class="ukiyo img1" src="../../Images/bg.png" decoding="async" />
+        <video loop="true" autoplay="autoplay" muted>
+          <source src="../../Images/shekinahVid.mp4" type="video/mp4">
+          <source src="../../Images/shekinahVid.ogg" type="video/ogg">
+          Your browser does not support the video tag.
+        </video>
       </section>
       <div class="contents-body">
-        <p class="company-name stagger" style="--delay: 1s;"><img src="../../Images/shekinahLogo.svg" alt="SHEKINAH"></p>
+        <p class="company-name stagger" style="--delay: 1s;"><img src="../../Images/shekinahLogo.svg" alt="SHEKINAH">
+        </p>
         <span class="contents-title stagger" style="--delay: 1.5s;">A good place for making unforgettable, joyful
           moments.</span>
         <a href="/../Pages/bookpage.php" class="button parallax-btn stagger" style="--delay: 2s;">BOOK NOW</a>
@@ -52,6 +57,7 @@ if ($registrationSuccess) {
 
       <img class="ukiyo img-side" data-u-speed="2" data-u-scale="1.3" data-u-willchange decoding="async"
         src="../../Images/bg4.jpg" />
+
       <div class="main-content drop-in">
         <h1 class="main-title">Welcome to the Shekinah event place rental</h1>
         <div class="vl"></div>
@@ -117,6 +123,32 @@ if ($registrationSuccess) {
         <div class="h1"> COMING SOON!!</div>
       </center>
       <div class="list">
+        <img class="ukiyo" href="../../Images/img1.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img2.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img3.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img4.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img5.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img6.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img7.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img8.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img9.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img10.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img11.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img12.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img13.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img14.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img15.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img16.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img17.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img18.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img19.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img20.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img21.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img22.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img23.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img24.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" href="../../Images/img25.jpg" alt="Shekinah"></img>
+
         <!-- <a href="https://www.facebook.com/photo.php?fbid=511398648143492&set=pb.100078200832295.-2207520000&type=3" target="_blank"> <img class="ukiyo"
             src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/458225021_511401764809847_2394389677825235738_n.jpg?stp=cp6_dst-jpg&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHmElnIBAcM3ERK3nO-ZNT0z19kClaL_vXPX2QKVov-9SEJAOJDU4BS1OPinrZYYNKDkEUt3aUXNoU1vP8dj3_c&_nc_ohc=5bb6g3L9VvkQ7kNvgEMwSR3&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=AXSisI8a3x7EF0tacaOLX7l&oh=00_AYCFyxuW8rbRFXXgr4QUyWQ3eoDRGCvm2HiTTlQFNpxTig&oe=6742313B"
             alt="Shekinah Images" />
@@ -291,24 +323,33 @@ if ($registrationSuccess) {
         <div class="faq-question">
           <input id="q1" type="checkbox" class="panel" name="panel">
           <label for="q1" class="plus">+</label>
-          <label for="q1" class="panel-title">What is the meaning of life?</label>
-          <div class="panel-content">42</div>
+          <label for="q1" class="panel-title">What are the check-in and check out times?</label>
+          <div class="panel-content">
+            Our check-in time starts at 8:00 AM ,
+            and check-out is at 12:00 AM. If you need an early check-in or late check-out,
+            we recommend contacting us in advance to see if arrangements can be made.
+          </div>
         </div>
 
         <div class="faq-question">
           <input id="q2" type="checkbox" class="panel">
           <label for="q2" class="plus">+</label>
-          <label for="q2" class="panel-title">How much wood would a woodchuck chuck?</label>
-          <div class="panel-content">A woodchuck would chuck all the wood he could chuck, if a woodchuck could chuck
-            wood!</div>
+          <label for="q2" class="panel-title">What payment methods are accepted?</label>
+          <div class="panel-content">We accept various payment methods, including major credit/debit cards,
+            digital wallets and bank transfers. We also accept cash at our front desk.
+            Please note that additional fees may apply for bank transfers or certain credit card transactions.
+          </div>
         </div>
 
         <div class="faq-question">
           <input id="q3" type="checkbox" class="panel">
           <label for="q3" class="plus">+</label>
-          <label for="q3" class="panel-title">What happens if Pinocchio says, "my nose will grow now"?</label>
-          <div class="panel-content">Certain questions are better left &nbsp; <a
-              href="https://en.wikipedia.org/wiki/The_Unanswered_Question" target="_blank">unanswered</a></div>
+          <label for="q3" class="panel-title">Is the catering included?</label>
+          <div class="panel-content"> No, we don't provide catering services. Our resort offers versatile event spaces,
+            amenities and exceptional service.
+            Guests are welcome to coordinate external catering services tailored to their preferences,
+            subject to their payment fee. Please contact us for recommended caterers and event planning assistance.
+          </div>
         </div>
       </div>
     </section>
