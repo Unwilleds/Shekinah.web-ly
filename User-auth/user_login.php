@@ -12,7 +12,9 @@ if (isset($_SESSION["user"])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Authentication</title>
+  <title>Shekinah | Login/Register</title>
+  <link rel="icon" type="image/x-icon" href="/../Images/favico.svg">
+
   <?php require_once __DIR__ . '/../Assets/User_auth_head.php'; ?>
 </head>
 
@@ -170,6 +172,8 @@ if (isset($_SESSION["user"])) {
 
 
     <div class="container" id="container">
+    <a class="a" href="/../Pages/homepage.php"><i class="fa-solid fa-arrow-left"></i></a>
+
   <!-- Sign Up Form -->
   <div class="form-container sign-up-container">
     <form action="user_login.php" method="post" class="form" id="register-form">
@@ -231,6 +235,7 @@ if (isset($_SESSION["user"])) {
             if ($stmt->execute()) {
               $_SESSION["user"] = "yes";
               $_SESSION["registration_success"] = "Registration successful.";
+              $_SESSION["full_name"] = $user["full_name"];
               header("Location: /Pages/homepage.php");
               exit();
             } else {
@@ -242,8 +247,29 @@ if (isset($_SESSION["user"])) {
 
       <input type="text" name="name" placeholder="Full Name"  value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>" />
       <input type="email" name="email" placeholder="Email"  value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>" />
-      <input type="password" name="password" id="register-password" placeholder="Password"  />
-      <input type="password" name="confirmPassword" id="register-confirm-password" placeholder="Confirm Password"  />
+      <span class="seePasswordToggle">
+        <input
+          type="password"
+          name="password"
+          id="password1"
+          placeholder="Create your Password"
+          value="<?= isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '' ?>"
+          autocomplete="off"
+        />
+        <i class="fa-solid fa-eye" onclick="seePassword('password1', this)"></i>
+      </span>
+
+      <span class="seePasswordToggle">
+        <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        value="<?= isset($_POST['confirmPassword']) ? htmlspecialchars($_POST['confirmPassword']) : '' ?>"
+        autocomplete="off"
+        />
+        <i class="fa-solid fa-eye" id="icon" onclick="seePassword('confirmPassword', this)"></i>
+      </span>
       <div class="form-grps">
         <label class="checkbx">
           <input type="checkbox" name="terms" <?= isset($_POST['terms']) ? 'checked' : '' ?> />
@@ -293,7 +319,19 @@ if (isset($_SESSION["user"])) {
         ?>
 
       <input type="email" name="lEmail" placeholder="Email"  value="<?= isset($_POST['lEmail']) ? htmlspecialchars($_POST['lEmail']) : '' ?>" />
-      <input type="password" name="lPassword" id="login-password" placeholder="Password"  />
+     
+                <span class="seePasswordToggle">
+                    <input
+                    type="password"
+                    name="lPassword"
+                    id="lPassword"
+                    placeholder="Enter your Password"
+                    autocomplete="false"
+                    required
+                    />
+                    <i class="fa-solid fa-eye" onclick="seePassword('lPassword', this)"></i>
+                </span>
+               
       <div class="form-grps">
         <label class="checkbx">
           <input type="checkbox" name="rememberMe" /> Remember me

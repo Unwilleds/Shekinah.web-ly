@@ -19,11 +19,11 @@ class Navbar extends HTMLElement {
                   <a class="nav-link" href="./bookpage.php">Book Now</a>
                 </li>
                 <li>
-                  <a class="nav-link" href="./aboutpage.php">About Us</a>
-                 
+                  <a class="nav-link" href="./offers.php">Offers</a>
                 </li>
                 <li>
-                  <a class="nav-link" href="./services.php">Services</a>
+                  <a class="nav-link" href="./aboutpage.php">About Us</a>
+                 
                 </li>
               </ul>
             </nav>
@@ -34,7 +34,7 @@ class Navbar extends HTMLElement {
           <div class="login-btn-grps">
             ${
               isLoggedIn
-                ? `<a href="./user_setting.php" class="login-btn">Welcome, ${username}</a>`
+                ? `<a href="/../User-auth/user_logout.php" class="login-btn red">Logout</a>`
                 : `<a href="/../User-auth/user_login.php" class="login-btn">Login</a>`
             }
           </div>

@@ -6,6 +6,9 @@ if (isset($_COOKIE["user_login"])) {
 
     // Optionally destroy the session if you are using sessions as well
     session_destroy();
+} else {
+    session_destroy();
+
 }
 header("location: /../Pages/homepage.php");
 exit();

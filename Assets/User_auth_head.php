@@ -7,7 +7,6 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="../CSS/user-auth.css" />
-  <script src="../JS/assets.js" type="text/javascript" defer></script>
   <script src="../JS/user-auth.js" type="text/javascript" defer></script>
 
 <script src="https://kit.fontawesome.com/fe386cfee9.js" crossorigin="anonymous"></script>

@@ -43,7 +43,7 @@ if ($registrationSuccess) {
         <p class="company-name stagger" style="--delay: 1s;"><img src="../../Images/shekinahLogo.svg" alt="SHEKINAH"></p>
         <span class="contents-title stagger" style="--delay: 1.5s;">A good place for making unforgettable, joyful
           moments.</span>
-        <button class="button parallax-btn stagger" style="--delay: 2s;">BOOK NOW</button>
+        <a href="/../Pages/bookpage.php" class="button parallax-btn stagger" style="--delay: 2s;">BOOK NOW</a>
       </div>
     </div>
 
@@ -60,7 +60,7 @@ if ($registrationSuccess) {
           is meticulously designed to enhance your experience. Immerse yourself in the serene ambiance of our stunning
           pool, which serves as a picturesque centerpiece for your gathering, providing a tranquil and inviting
           atmosphere.</p>
-        <button class="button black">Learn more</button>
+        <a href="/../Pages/aboutpage.php" class="button black">Learn more</a>
 
       </div>
     </section>

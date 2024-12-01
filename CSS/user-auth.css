@@ -51,7 +51,7 @@ body{
     top: 17px;
     font-size: 1em;
 }
-.form #inputs input:not(:placeholder-shown) + i{
+.form input:not(:placeholder-shown) + i{
     display: block;
 }
 .form #inputs input{
@@ -525,7 +525,6 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   padding: 0 50px;
   height: 100%;
   text-align: center;
@@ -605,4 +604,32 @@ input[type="text"], input[type="password"], input[type="email"]{
     background-color: var(--base-color);
     border-bottom: 2px solid black;
     border-radius: 0;
+}
+
+
+ .seePasswordToggle{
+    position: relative;
+ }
+ .seePasswordToggle i {
+    position: absolute;
+   right: 1%;
+   top: 40%;
+   width: 20px;
+}
+
+ .seePasswordToggle input:has(::placeholder) i{
+    display: none;
+}
+
+.seePasswordToggle input:not(:has(::placeholder)) i{
+    display: block;
+}
+
+.a{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    color: var(--text-color);
+    z-index: 99999;
+    font-size: 1.5em;
 }

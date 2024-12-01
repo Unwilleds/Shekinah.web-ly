@@ -1,0 +1,60 @@
+:root {
+    /* Color */
+    --base-color: #eefcfc;
+    --primary-color: #00a7a7;
+    --secondary-color: #6abebe;
+    --accent-color: #92b568;
+    --tertiary-color: #b7dba1;
+    --text-color: #1f2929;
+    --gray-color: #dae2e2;
+    --bgtransparent: transparent;
+    --blend-mode: difference;
+  
+    --d: 1000ms;
+    --e: cubic-bezier(0.19, 1, 0.22, 1);
+    --font-sans: "Rounded Elegance", sans-serif;
+    --font-serif: "Marion", serif;
+  
+    /* Transition */
+    --transition: 0.1s all ease-in-out;
+  
+    /* Quotes Animation */
+    --quotes-slider-width: 1100px;
+    --quotes-slider-height: 300px;
+    --quotes-animation-duration: 25s;
+    --quotes-animation-delay: 5s;
+  }
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main-sec{
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
+}
+
+.main-sec section{
+    display: flex;
+    gap: 5em;
+}
+
+section .img-grp .imgFrame{
+    background: var(--primary-color);
+    height: 80px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+section .img-grp{
+    width: 400px;
+    height: 150px;
+    border-right : 2px solid var(--gray-color);
+}
+
+section .content-grp{
+    flex: 1.5;
+}
