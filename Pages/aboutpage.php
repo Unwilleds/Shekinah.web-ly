@@ -38,11 +38,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
     <main id="container">
         <div class="main">
             <section class="dissolve">
-                <video loop="true" autoplay="autoplay" muted>
-                    <source src="../../Images/shekinahVid.mp4" type="video/mp4">
-                    <source src="../../Images/shekinahVid.ogg" type="video/ogg">
-                    Your browser does not support the video tag.
-                </video>
+                <img class="ukiyo img1" src="../../Images/bg.png" decoding="async" />
             </section>
             <div class="contents-body">
                 <p class="company-name stagger" style="--delay: 1s;"><img src="../../Images/shekinahLogo.svg"
@@ -70,15 +66,15 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                     </h1>
                     <br>
                     <p>
-                        A private place where you can relax, chill, enjoy serenity, celebrate life milestones, celebrate
-                        any occasion, bond with family, friends or company. Come book with us now to experience
-                        serenity, relaxation, and joy of the moment.
+                        Elevate your special occasion at Shekinah Private Resort,
+                        featuring luxurious amenities, impeccable service, and exciting activities,
+                        including photoshoots and poolside fun, tailored for unforgettable memories.
                         <br>
                         <br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia facilis modi architecto explicabo
-                        doloremque magni cumque, consequatur quae adipisci aspernatur tempora perferendis, nulla id
-                        voluptatibus aliquid voluptates porro eaque sed.
-
+                        Make memories at Shekinah Private Resort! High-end features, stunning decor and elegant charm &
+                        exceptional service.
+                        Perfect for life's special moments!
+                        #CelebrateLife #ResortLife"
                     </p>
                 </span>
 
@@ -89,18 +85,9 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
 
             <div class="par4">
                 <h1 class="main-title">Our Location</h1>
-                <p class="main-body">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum eveniet nulla atque
-                    et
-                    minima ipsam doloremque, explicabo voluptates soluta unde, maxime nostrum dignissimos itaque quasi
-                    sint
-                    quo
-                    laboriosam nemo provident quisquam impedit asperiores officiis perspiciatis deserunt excepturi!
-                    Culpa,
-                    porro
-                    facilis aspernatur cupiditate, nam dolore ipsa tenetur repudiandae commodi aperiam error reiciendis
-                    sed
-                    illo
-                    asperiores? Commodi neque architecto qui saepe sequi.</p>
+                <p class="main-body">Shekinah events place is located at number 49 san Ignacio st.
+                    Poblacion, San Jose Del Monte City, Bulacan, near the Bulacan Standard Academy(BSA) Muzon campus.
+                </p>
             </div>
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3857.2022048624594!2d121.04269661170288!3d14.813905371757011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397af21a45740f7%3A0x9e74e2a793a415bf!2sShekinah%20Events%20Place!5e0!3m2!1sen!2sph!4v1730966315918!5m2!1sen!2sph"

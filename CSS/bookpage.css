@@ -412,17 +412,7 @@ select:focus {
   scroll-behavior: smooth;
 }
 
-.date-time-main::-webkit-scrollbar {
- width: 0;
-}
-::-webkit-scrollbar {
-  width: 5px;
-  border-radius: 50%;
-}
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
 
 .calendar {
   max-width: 500px;
@@ -520,7 +510,6 @@ select:focus {
   padding: 12px 24px;
   color: var(--white-color);
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 16px;
@@ -700,7 +689,7 @@ input[type=number] {
 #summary p {
   margin: 15px 0;
   padding: 12px 15px;
-  background-color: var(--white-color);
+  background-color: #eee;
   border-radius: 6px;
   border-left: 4px solid var(--primary-color);
   display: flex;

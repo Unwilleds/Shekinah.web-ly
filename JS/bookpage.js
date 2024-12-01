@@ -255,18 +255,37 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       payNowBtn.addEventListener("click", () => {
-        document.querySelector(".online-payment").style.display = "flex";
-        document.querySelector(".paid").textContent = `${amount.value}`;
-        console.log(amount.value);
-        const prices = initialOption.getAttribute("data-price");
-        const selectedPriceValue = parseInt(cleanSelectedPrice) || 0; 
-        const amountValue = parseInt(amount.value) || 0;
-
+        const onlinePayment = document.querySelector(".online-payment");
+        const paidElement = document.querySelector(".paid");
+        const balanceElement = document.querySelector(".balance");
+    
+        if (!onlinePayment || !paidElement || !balanceElement) {
+            console.error("Required elements not found in the DOM.");
+            return;
+        }
+    
+        onlinePayment.style.display = "flex";
+        paidElement.textContent = `${amount.value}`;
+    
+        const prices = initialOption.getAttribute("data-price") || "0";
+        var priceNum = parseFloat(prices.replace(/[,£$₱]/g, ""));
+        const selectedPriceValue = parseFloat(priceNum) || 0; 
+        const amountValue = parseFloat(amount.value) || 0;
+    
         // Calculate the balance
         const balance = amountValue - selectedPriceValue;
-
+        console.log("Amount paid:", amountValue);
+        console.log("Price selected:", selectedPriceValue);
+        console.log("Balance:", balance);
+    
         // Update the balance element
-        document.querySelector(".balance").textContent = `₱ ${balance}`;
+        balanceElement.textContent = `₱ ${balance.toFixed(2)}`;
+    
+        // Optional: Add validation for insufficient payment
+        if (balance < 0) {
+            alert("Insufficient payment amount!");
+        }
+    
       });
     }
     // if (paymentOnlineMethodSelect) {
