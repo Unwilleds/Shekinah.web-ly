@@ -37,10 +37,10 @@ if ($registrationSuccess) {
   <main id="container">
     <div class="fv">
       <section class="s1 dissolve">
-        <img class="ukiyo img1" src="/../Images/bg.png" decoding="async" />
+        <img class="ukiyo img1" src="../../Images/bg.png" decoding="async" />
       </section>
       <div class="contents-body">
-        <p class="company-name stagger" style="--delay: 1s;"><img src="/../Images/shekinahLogo.svg" alt="SHEKINAH"></p>
+        <p class="company-name stagger" style="--delay: 1s;"><img src="../../Images/shekinahLogo.svg" alt="SHEKINAH"></p>
         <span class="contents-title stagger" style="--delay: 1.5s;">A good place for making unforgettable, joyful
           moments.</span>
         <button class="button parallax-btn stagger" style="--delay: 2s;">BOOK NOW</button>
@@ -51,7 +51,7 @@ if ($registrationSuccess) {
     <section class="img-content">
 
       <img class="ukiyo img-side" data-u-speed="2" data-u-scale="1.3" data-u-willchange decoding="async"
-        src="/../Images/bg4.jpg" />
+        src="../../Images/bg4.jpg" />
       <div class="main-content drop-in">
         <h1 class="main-title">Welcome to the Shekinah event place rental</h1>
         <div class="vl"></div>
@@ -134,7 +134,7 @@ if ($registrationSuccess) {
             alt="Shekinah Images" />
         </a>
         <a href="https://www.facebook.com/photo.php?fbid=437288415554516&set=pb.100078200832295.-2207520000&type=3" target="_blank"> <img class="ukiyo"
-            src="/../Images/bg.png"
+            src="../../Images/bg.png"
             alt="Shekinah Images" />
         </a>
         

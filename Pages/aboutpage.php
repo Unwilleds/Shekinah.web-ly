@@ -42,13 +42,13 @@ if ($registrationSuccess) {
         <div class="main">
             <section class="dissolve">
                 <video loop="true" autoplay="autoplay" muted>
-                    <source src="/../Images/shekinahVid.mp4" type="video/mp4">
-                    <source src="/../Images/shekinahVid.ogg" type="video/ogg">
+                    <source src="../../Images/shekinahVid.mp4" type="video/mp4">
+                    <source src="../../Images/shekinahVid.ogg" type="video/ogg">
                     Your browser does not support the video tag.
                 </video>
             </section>
             <div class="contents-body">
-                <p class="company-name stagger" style="--delay: 1s;"><img src="/../Images/shekinahLogo.svg"
+                <p class="company-name stagger" style="--delay: 1s;"><img src="../../Images/shekinahLogo.svg"
                         alt="SHEKINAH"></p>
                 <h1 class="contents-title stagger" style="--delay: 1.5s;">ABOUT US</h1>
                 <span class="contents-p stagger" style="--delay: 2s;">A good place for making unforgettable,
@@ -56,7 +56,7 @@ if ($registrationSuccess) {
                     moments.</span>
                 <button class="button parallax-btn stagger" style="--delay: 2.5s;">BOOK NOW</button>
             </div>
-            <!-- <img class="ukiyo" src="/../Images/bg4.jpg" alt=""> -->
+            <!-- <img class="ukiyo" src="../../Images/bg4.jpg" alt=""> -->
         </div>
 
 
@@ -64,7 +64,7 @@ if ($registrationSuccess) {
             <center>
                 <h1 class="abt-title">ABOUT US</h1>
             </center>
-            <img class="ukiyo" src="/../Images/abt.jpg" alt="SHEKINAH">
+            <img class="ukiyo" src="../../Images/abt.jpg" alt="SHEKINAH">
             <div class="about-cont">
 
                 <span class="f-heading">
@@ -111,7 +111,7 @@ if ($registrationSuccess) {
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
         <section class="abt-mission">
-            <img class="ukiyo" src="/../Images/bg7.jpg" alt="SHEKINAH">
+            <img class="ukiyo" src="../../Images/bg7.jpg" alt="SHEKINAH">
             <div class="abt-div">
                 <h1>Our Mission</h1>
                 <p>
