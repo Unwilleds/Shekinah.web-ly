@@ -119,31 +119,31 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         <div class="h1"> COMING SOON!!</div>
       </center>
       <div class="list">
-        <img class="ukiyo" href="../../Images/img1.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img2.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img3.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img4.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img5.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img6.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img7.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img8.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img9.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img10.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img11.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img12.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img13.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img14.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img15.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img16.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img17.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img18.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img19.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img20.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img21.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img22.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img23.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img24.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img25.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img1.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img2.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img3.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img4.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img5.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img6.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img7.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img8.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img9.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img10.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img11.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img12.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img13.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img14.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img15.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img16.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img17.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img18.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img19.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img20.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img21.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img22.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img23.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img24.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img25.jpg" alt="Shekinah"></img>
 
         <!-- <a href="https://www.facebook.com/photo.php?fbid=511398648143492&set=pb.100078200832295.-2207520000&type=3" target="_blank"> <img class="ukiyo"
             src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/458225021_511401764809847_2394389677825235738_n.jpg?stp=cp6_dst-jpg&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHmElnIBAcM3ERK3nO-ZNT0z19kClaL_vXPX2QKVov-9SEJAOJDU4BS1OPinrZYYNKDkEUt3aUXNoU1vP8dj3_c&_nc_ohc=5bb6g3L9VvkQ7kNvgEMwSR3&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=AXSisI8a3x7EF0tacaOLX7l&oh=00_AYCFyxuW8rbRFXXgr4QUyWQ3eoDRGCvm2HiTTlQFNpxTig&oe=6742313B"

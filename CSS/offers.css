@@ -42,18 +42,157 @@
     gap: 5em;
 }
 
-section .img-grp .imgFrame{
-    background: var(--primary-color);
-    height: 80px;
-    width: 300px;
-    border-radius: 10px;
+/* Container for both the image and content */
+.content-container {
+    display: flex;
+    justify-content: space-between; /* Spaces the image and content equally */
+    align-items: center; /* Aligns the image and text vertically */
+    flex-wrap: wrap; /* Allows wrapping for smaller screens */
+    gap: 20px; /* Adds consistent spacing between image and text */
 }
 
-section .img-grp{
-    width: 400px;
-    height: 150px;
-    border-right : 2px solid var(--gray-color);
+/* Image container with border */
+.img-grp {
+    flex: 0 0 auto; /* Prevents the image container from stretching */
+    width: 20%; /* Adjust the size of the image container */
+    border-right: 2px solid #ccc; /* Adds a vertical border to separate image and text */
+    padding-right: 20px; /* Space between image and border */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: center; /* Centers the image vertically */
 }
+
+/* Image styling */
+.resizable-img {
+    max-width: 100%; /* Ensures the image fits within the container */
+    height: auto; /* Keeps aspect ratio */
+}
+
+/* Content container */
+.content-grp {
+    flex: 1; /* Content container takes the remaining space */
+    display: flex;
+    flex-direction: column; /* Ensures content stacks vertically */
+    justify-content: center; /* Centers text vertically with the image */
+    gap: 15px; /* Adds consistent spacing between text elements */
+    margin: 20px; /* Adds outer margins around the entire text block */
+}
+
+/* Flex container for both lists */
+.amenities-container {
+    display: flex;
+    justify-content: space-between; /* Spaces the lists equally */
+    gap: 20px; /* Adds space between the two list containers */
+    margin-top: 15px; /* Adds a margin above the amenities section */
+}
+
+/* List container */
+.amenities-list-container {
+    width: 48%; /* Each list takes up about half of the available space */
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Adds margin below each list for spacing */
+}
+
+/* Styling for the lists */
+.amenities-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0; /* Adds vertical spacing around the lists */
+}
+
+.amenities-list li {
+    margin-bottom: 10px;
+}
+
+.amenities-list strong {
+    font-weight: bold;
+}
+
+/* Styling for the section titles */
+#event h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px; /* Adds spacing below headings */
+    margin-top: 10px; /* Adds spacing above headings */
+    color: #333;
+}
+
+/* Responsive styling for mobile */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column; /* Stacks the image and content vertically */
+        align-items: flex-start; /* Aligns items to the left */
+    }
+
+    .img-grp {
+        width: 100%; /* Image takes up full width on mobile */
+        border-right: none; /* Removes the border for a cleaner mobile view */
+        padding-right: 0;
+        margin-bottom: 20px; /* Adds spacing below the image */
+    }
+
+    .content-grp {
+        width: 100%; /* Content takes up full width on mobile */
+        margin: 10px; /* Reduces outer margin for mobile view */
+    }
+
+    .amenities-container {
+        flex-direction: column; /* Stacks the lists vertically */
+        gap: 10px; /* Adjusts spacing for smaller screens */
+    }
+
+    .amenities-list-container {
+        width: 100%; /* Each list takes full width on mobile */
+        margin-bottom: 15px; /* Adjusts bottom margin for mobile */
+    }
+}
+
+  
+  /* Styling for the lists */
+  .amenities-list {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .amenities-list li {
+    margin-bottom: 10px;
+  }
+  
+  .amenities-list strong {
+    font-weight: bold;
+  }
+  
+  /* Optional: Styling for the section titles */
+  #event h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Responsive styling for mobile */
+  @media (max-width: 768px) {
+    .content-container {
+      flex-direction: column; /* Stacks the image and content vertically on small screens */
+    }
+  
+    .img-grp {
+      width: 100%; /* Image takes up full width on mobile */
+      margin-bottom: 20px;
+    }
+  
+    .content-grp {
+      width: 100%; /* Content takes up full width on mobile */
+    }
+  
+    .amenities-container {
+      flex-direction: column; /* Stacks the lists vertically on small screens */
+    }
+  
+    .amenities-list-container {
+      width: 100%; /* Each list takes full width on mobile */
+    }
+  }
+  
 
 section .content-grp{
     flex: 1.5;
