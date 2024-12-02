@@ -47,7 +47,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <span class="contents-p stagger" style="--delay: 2s;">A good place for making unforgettable,
                     joyful
                     moments.</span>
-                <button class="button parallax-btn stagger" style="--delay: 2.5s;">BOOK NOW</button>
+              
             </div>
             <!-- <img class="ukiyo" src="../../Images/bg4.jpg" alt=""> -->
         </div>
@@ -95,7 +95,9 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
         <section class="abt-mission">
-            <img class="ukiyo" src="../../Images/bg7.jpg" alt="SHEKINAH">
+            <div class="img">
+                <img class="ukiyo" src="../../Images/bg7.jpg" alt="SHEKINAH">
+            </div>
             <div class="abt-div">
                 <h1>Our Mission</h1>
                 <p>

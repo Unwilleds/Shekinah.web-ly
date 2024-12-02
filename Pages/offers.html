@@ -1,4 +1,4 @@
-
+<!-- 
 <?php
 session_start();
 
@@ -6,7 +6,7 @@ session_start();
     $username = $isLoggedIn ? $_SESSION["full_name"]: null;
 
 
-?>
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,23 +14,24 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shekinah | Services</title>
-    <?php
+    <!-- <?php
         require_once __DIR__ . '/../Assets/Html_head.php';
         require_once __DIR__ . '/../Assets/Gsap_cdn.php';
-    ?>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="/../CSS/offers.css">
+    ?> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="../CSS/offers.css">
+  <link rel="stylesheet " type="text/css" href="..x1/CSS/style.css">
  
 </head>
 
 <body >
-  <?php
+  <!-- <?php
   include '../Assets/Loading_page.php';
   showLoader();
   ?>
    <navbar-element data-is-logged-in="<?= $isLoggedIn ? 'true' : 'false' ?>"
     data-username="<?= htmlspecialchars($username) ?>">
-  </navbar-element>
+  </navbar-element> -->
 
   <main class="book-main">
       <center>
@@ -106,8 +107,8 @@ session_start();
   </footer>
 
   
-    <?php
+    <!-- <?php
         require_once __DIR__ . '/../Assets/Html_footer.php';
-    ?>
+    ?> -->
 </body>
 </html>

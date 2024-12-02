@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shekinah | Forgot Password</title>
   <link rel="icon" type="image/x-icon" href="/../Images/favico.svg">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <?php
     require_once __DIR__ . '/../Assets/User_auth_head.php';
@@ -46,6 +48,8 @@
 </head>
 
 <body>
+<?php require_once __DIR__ . '/../Assets/toasts.php'; ?>
+
     <div class="auth-container container">
         <a class="a" href="./user_login.php"><i class="fa-solid fa-arrow-left"></i></a>
             <center>
@@ -85,14 +89,22 @@
 
                     try {
                         $mail->send();
-                        echo "<div class='success'>A reset link has been sent to your email address.</div>";
+                        
+                        echo "<script>
+                        displayToastNotification('A reset link has been sent to your email address., 'fa-check', '#27ae60', 'slide-in-slide-out');
+                    </script>";
                         unset($_POST['email']);
                     } catch (Exception $e) {
-                        echo "<div class='errors'>Message could not be sent. Mailer error: " . htmlspecialchars($mail->ErrorInfo) . "</div>";
+                        echo "<script>
+                        displayToastNotification('Message could not be sent.', 'fa-xmark', '#c0392b', 'slide-in-slide-out');
+                        console.log(" . htmlspecialchars($mail->ErrorInfo) . ");
+                    </script>";
                     }
                 } else {
                     if (strlen($email) !== 0) {
-                        echo "<div class='errors'>No account found with that email.</div>";
+                        echo "<script>
+                        displayToastNotification('No account found with that email., 'fa-check', '#27ae60', 'slide-in-slide-out');
+                    </script>";
                     }
                 }
             }

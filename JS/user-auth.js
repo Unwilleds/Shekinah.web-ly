@@ -1,3 +1,5 @@
+
+
 const seePassword = (inputId, iconElement) => {
   const inputField = document.getElementById(inputId);
 
@@ -18,9 +20,15 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
-signUpButton.addEventListener('click', () => container.classList.add('right-panel-active'));
+// Check if the elements exist before adding event listeners
+if (signUpButton) {
+  signUpButton.addEventListener('click', () => container.classList.add('right-panel-active'));
+}
 
-signInButton.addEventListener('click', () => container.classList.remove('right-panel-active'));
+if (signInButton) {
+  signInButton.addEventListener('click', () => container.classList.remove('right-panel-active'));
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const activeForm = '<?= $activeForm ?>';
