@@ -80,7 +80,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             <h2 class="card-title">Weddings</h2>
             <p class="copy">Celebrate your love story in a breathtaking setting with beautiful ceremony and stunning
               decor.</p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
         <div class="main-card">
@@ -88,14 +88,14 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             <h2 class="card-title">Themed Parties</h2>
             <p class="copy">From seasonal celebrations to costume parties, our venue transforms into a vibrant space
               tailored to your theme.</p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
         <div class="main-card">
           <div class="card-content">
             <h2 class="card-title">Family Reunions</h2>
             <p class="copy">Bring your family together for a fun-filled reunion at our venue.</p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
         <div class="main-card">
@@ -103,7 +103,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             <h2 class="card-title">Pool Parties</h2>
             <p class="copy">Dive into fun with our exciting pool parties! Our poolside area provides a vibrant
               atmosphere for enjoying. </p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
       </div>
@@ -354,46 +354,11 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
     <!-- <a href="/../User-auth/user_logout.php" class="btn btn-danger rounded-0 scrollEffect">Logout</a> -->
 
   </main>
-  <footer>
-    <div class="site-footer">
-      <div class="stack">
-        <p class="logo-name">Shekinah Event Place Rental</p>
-        <p class="location">
-          49 San Ignacio St, Poblacion, <br />San Jose del Monte City, Bulacan
-        </p>
-      </div>
-      <div class="site-link-group">
-        <ul class="site-links">
-          <li><a class="link" href="">About Us</a></li>
-          <li><a class="link" href="">Inquire</a></li>
-          <li><a class="link" href="">FAQ's</a></li>
-        </ul>
-        <ul class="social-links">
-          <li>
-            <a class="socials" href=""><i class="fa-brands fa-facebook"></i></a>
-          </li>
-          <li>
-            <a class="socials" href=""><i class="fa-brands fa-instagram"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom-footer">
-      <p class="text-link">
-        <a href="">Contact</a>
-        |
-        <a href="">Imprint</a>
-        |
-        <a href="">Data Privacy</a>
-      </p>
-      <p class="company-name stagger" style="--delay: 1s">Shekinah</p>
-    </div>
-    <a href='#top' class="goUp"><i class="fa-solid fa-arrow-up"></i></a>
-  </footer>
 
   <?php
-  require_once __DIR__ . '/../Assets/Html_footer.php';
-  ?>
+    require_once __DIR__ . '/../Assets/footer.php';
+    require_once __DIR__ . '/../Assets/Html_footer.php';
+    ?>
 </body>
 
 </html>
