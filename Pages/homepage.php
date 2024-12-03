@@ -250,14 +250,10 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
 
 
           <span>
-            Book your event today at Shekinah – The perfect place for every occasion! Our venue offers a relaxing
-            poolside atmosphere, exciting events, and friendly staff to make your experience
-            unforgettable. Reserve now!
+          From breathtaking views to exceptional service, our guests love it all. 
           </span>
           <span>
-            Book your event today at Shekinah – The perfect place for every occasion! Our venue offers a relaxing
-            poolside atmosphere, exciting events, and friendly staff to make your experience
-            unforgettable. Reserve now!
+          From breathtaking views to exceptional service, our guests love it all. 
           </span>
 
         </div>
@@ -275,7 +271,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <div class="quote">"Our wedding at Shekinah was a dream come true! The staff was incredibly attentive,
                   and
                   the setting was absolutely stunning. Thank you for making our special day unforgettable!"</div>
-                <div class="source">- Emily Johnson</div>
+                <div class="source">- Marc Kevin Del Mundo</div>
               </li>
               <li class="anim2">
                 <div class="quote">"We hosted our family reunion at Shekinah, and it was perfect! The pool area was a
@@ -288,7 +284,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                   what I wanted, and the staff made everything seamless. I couldn’t have asked for a better
                   experience."
                 </div>
-                <div class="source">- Allan Martin Jalooopp</div>
+                <div class="source">- Arlan Martin Jalop</div>
               </li>
               <li class="anim4">
                 <div class="quote">"I held a corporate retreat at Shekinah, and it exceeded all expectations. The
@@ -300,7 +296,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <div class="quote">"We celebrated our anniversary at Shekinah, and it was magical. The romantic
                   atmosphere
                   and exceptional service made for a memorable evening. We’ll definitely be back!"</div>
-                <div class="source">- Giansanity</div>
+                <div class="source">- Gian Khiel Nieva</div>
               </li>
 
             </ul>
@@ -329,7 +325,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
           <input id="q2" type="checkbox" class="panel">
           <label for="q2" class="plus">+</label>
           <label for="q2" class="panel-title">What payment methods are accepted?</label>
-          <div class="panel-content">We accept various payment methods, including major credit/debit cards,
+          <div class="panel-content">We accept various payment methods, including BDO, BPI, GCash, etc.,
             digital wallets and bank transfers. We also accept cash at our front desk.
             Please note that additional fees may apply for bank transfers or certain credit card transactions.
           </div>
@@ -345,6 +341,31 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             subject to their payment fee. Please contact us for recommended caterers and event planning assistance.
           </div>
         </div>
+
+        <div class="faq-question">
+          <input id="q4" type="checkbox" class="panel">
+          <label for="q4" class="plus">+</label>
+          <label for="q4" class="panel-title">Are time extension allowed?</label>
+          <div class="panel-content">Yes, the rate is 1000 per hour, provided there isn't another client scheduled next.
+          </div>
+        </div>
+
+        <div class="faq-question">
+          <input id="q5" type="checkbox" class="panel">
+          <label for="q5" class="plus">+</label>
+          <label for="q5" class="panel-title">Are pets allowed?</label>
+          <div class="panel-content">Yes, pets are allowed, but they are not allowed in the pool.
+          </div>
+        </div>
+
+        <div class="faq-question">
+          <input id="q6" type="checkbox" class="panel">
+          <label for="q6" class="plus">+</label>
+          <label for="q6" class="panel-title">What are the policies regarding to the use of liquor?</label>
+          <div class="panel-content">You can buy liquors inside the premises, outside liquors are charge 200 per bottle, 300 per case for beer and alike.
+          </div>
+        </div>
+
       </div>
     </section>
 

@@ -19,7 +19,7 @@
         </div>
         <div class="bottom-footer">
             <p class="text-link">
-                <a href="">Contact</a>
+                <a href="aboutpage.php#contact">Contact</a>
                 |
                 <a href="">Imprint</a>
                 |
