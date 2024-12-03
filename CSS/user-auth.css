@@ -141,22 +141,40 @@ body{
     width: 60%;
 } */
 
+.err{
+    position: fixed;
+    top: 1em;
+    right: 5%;
+
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
 
 .errors{
-    padding: .7em 1em ;
+    padding: .5em 0.8em ;
     height: fit-content;
-    background-color: rgb(255, 212, 212);
+    background-color: rgb(255, 132, 132);
     border-radius: 5px;
-    border: 1px solid rgb(241, 181, 181);
+    border: 1px solid rgb(255, 25, 25);
     margin-bottom: 10px;
+    width: fit-content;
+    color: white;
+    font-size: .8em;
 }
 .success{
-    padding: 1em 1em ;
+    padding: .5em 0.8em ;
     height: fit-content;
-    background-color: rgb(191, 255, 175);
+    background-color: rgb(161, 255, 126);
     border-radius: 5px;
-    border: 1px solid rgb(140, 252, 140);
+    border: 1px solid rgb(54, 255, 54);
     margin-bottom: 10px;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    color: white;
+    font-size: .8em;
 }
 
 /*
@@ -409,18 +427,19 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 .container {
   background: var(--base-color);
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
   width: 900px;
   max-width: 100%;
   min-height: 680px;
    overflow: hidden;
   max-height: max-content;
+  position: relative;
 }
 
 .form-container {
@@ -553,11 +572,6 @@ input[type="submit"]:hover {
   background-color: var(--secondary-color);
 }
 
-.errors {
-  color: var(--secondary-color);
-  font-size: 12px;
-  margin-bottom: 8px;
-}
 
 button.ghost {
   border: 2px solid var(--base-color);

@@ -106,9 +106,11 @@
 
                 
                 if (count($errors) > 0){
+                    echo "<div class='err'>";
                     foreach($errors as $error){
                         echo "<div class='errors'>$error</div>";
                     }
+                    echo "</div>";
                 }
 
                 
@@ -122,7 +124,7 @@
                     $stmt->bind_param("si", $passwordHash, $user["id"]); // Fix data type for 'id'
                     $stmt->execute();
 
-                    echo "<div class='success'>Password updated. You can now login.</div>";
+                    echo "<div class='err'><div class='success'>Password updated. You can now login.</div></div>";
                 }
             }
             ?>
