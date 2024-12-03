@@ -1,0 +1,171 @@
+:root {
+  /* Color */
+  --base-color: #eefcfc;
+  --primary-color: #00a7a7;
+  --secondary-color: #6abebe;
+  --accent-color: #92b568;
+  --tertiary-color: #b7dba1;
+  --text-color: #1f2929;
+  --gray-color: #dae2e2;
+  --bgtransparent: transparent;
+  --blend-mode: difference;
+
+  --d: 1000ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: "Rounded Elegance", sans-serif;
+  --font-serif: "Marion", serif;
+
+  /* Transition */
+  --transition: 0.1s all ease-in-out;
+
+  /* Quotes Animation */
+  --quotes-slider-width: 1100px;
+  --quotes-slider-height: 300px;
+  --quotes-animation-duration: 25s;
+  --quotes-animation-delay: 5s;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-container {
+  flex: 1;
+  padding-top: 100px; /* Adds space below the navbar */
+  position: relative;
+  z-index: 4;
+  background: var(--base-color);
+  margin-bottom: 60vh;
+  border-radius: 30px;
+  padding-bottom: 5em;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 400px; /* Increased image height */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ccc;
+}
+
+/* Remove the old .content and .list styles */
+.content, .list, .ukiyo {
+  display: none;
+}
+
+content-container {
+  display: flex;
+  justify-content: space-between; /* Spaces the image and content equally */
+  align-items: center; /* Aligns the image and text vertically */
+  flex-wrap: wrap; /* Allows wrapping for smaller screens */
+  gap: 20px; /* Adds consistent spacing between image and text */
+}
+
+/* Image container with border */
+.img-grp {
+  flex: 0 0 auto; /* Prevents the image container from stretching */
+  width: 20%; /* Adjust the size of the image container */
+  border-right: 2px solid #ccc; /* Adds a vertical border to separate image and text */
+  padding-right: 20px; /* Space between image and border */
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+  display: flex;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: center; /* Centers the image vertically */
+}
+
+/* Image styling */
+.resizable-img {
+  max-width: 100%; /* Ensures the image fits within the container */
+  height: auto; /* Keeps aspect ratio */
+}
+
+/* Content container */
+.content-grp {
+  flex: 1; /* Content container takes the remaining space */
+  display: flex;
+  flex-direction: column; /* Ensures content stacks vertically */
+  justify-content: center; /* Centers text vertically with the image */
+  gap: 15px; /* Adds consistent spacing between text elements */
+  margin: 20px; /* Adds outer margins around the entire text block */
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+  margin-bottom: 3em;
+}
+
+.main .img1 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+  filter: brightness(80%);
+}
+
+
+
+

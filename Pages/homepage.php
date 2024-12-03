@@ -16,7 +16,11 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
   require_once __DIR__ . '/../Assets/Gsap_cdn.php';
   ?>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/../JS/homepage.js" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="../CSS/homepage.css" />
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 
 </head>
 
@@ -115,33 +119,88 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         </h1>
         <a href="https://www.facebook.com/shekinaheventsplace" target="_blank">Check us on facebook<span>→</span></a>
       </div>
-     
-      <div class="list">
-        <img class="ukiyo" src="../../Images/img1.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img2.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img3.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img4.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img5.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img6.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img7.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img8.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img9.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img10.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img11.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img12.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img13.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img14.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img15.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img16.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img17.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img18.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img19.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img20.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img21.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img22.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img23.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img24.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img25.jpg" alt="Shekinah"></img>
+
+     <!-- <h1 style="justify-items: center; text-align: center;">PLACE SLIDER HERE !!</h1> -->
+        <div class="slider-frame">
+            <div class="slide-images">
+                    <div class="img-container">
+                        <img src="../../Images/img1.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img2.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img3.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img4.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img5.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img6.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img7.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img8.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img9.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img10.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img11.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img12.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img13.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img14.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img15.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img16.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img17.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img18.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img19.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img20.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img21.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img22.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img23.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img24.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img25.jpg">
+                    </div>
+                    <button class="card-body-btn button"><a href="gallerypage.php">View More</a></button>
+            </div>
+        </div>
 
         <!-- <a href="https://www.facebook.com/photo.php?fbid=511398648143492&set=pb.100078200832295.-2207520000&type=3" target="_blank"> <img class="ukiyo"
             src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/458225021_511401764809847_2394389677825235738_n.jpg?stp=cp6_dst-jpg&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHmElnIBAcM3ERK3nO-ZNT0z19kClaL_vXPX2QKVov-9SEJAOJDU4BS1OPinrZYYNKDkEUt3aUXNoU1vP8dj3_c&_nc_ohc=5bb6g3L9VvkQ7kNvgEMwSR3&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=AXSisI8a3x7EF0tacaOLX7l&oh=00_AYCFyxuW8rbRFXXgr4QUyWQ3eoDRGCvm2HiTTlQFNpxTig&oe=6742313B"
