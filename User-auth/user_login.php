@@ -88,6 +88,8 @@ if (isset($_SESSION["user"])) {
             if ($stmt->execute()) {
               $_SESSION["user"] = "yes";
               $_SESSION["full_name"] = $fullName;
+              $_SESSION["email"] = $user["email"];
+              
               echo "<div class='err'><div class='success'>You are registered successfully</div></div>";
               header("Location: /Pages/homepage.php");
               exit();
@@ -150,6 +152,7 @@ if (isset($_SESSION["user"])) {
           if ($user && password_verify($lPassword, $user["password"])) {
             $_SESSION["user"] = "yes";
             $_SESSION["full_name"] = $user["full_name"];
+            $_SESSION["email"] = $user["email"];
 
             if (isset($_POST["rememberMe"])) {
               setcookie("user_login", $user["full_name"], time() + (86400), "/");

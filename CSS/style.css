@@ -717,7 +717,7 @@ hr {
 }
 
 .errors{
-  padding: .5em 0.8em ;
+  padding: .7em 1em ;
   height: fit-content;
   background-color: rgb(255, 132, 132);
   border-radius: 5px;
@@ -725,10 +725,10 @@ hr {
   margin-bottom: 10px;
   width: fit-content;
   color: white;
-  font-size: .8em;
+  font-size: 1em;
 }
 .success{
-  padding: .5em 0.8em ;
+  padding: .7em 1em ;
   height: fit-content;
   background-color: rgb(161, 255, 126);
   border-radius: 5px;
@@ -738,5 +738,5 @@ hr {
   top: 1em;
   right: 1em;
   color: white;
-  font-size: .8em;
+  font-size: 1em;
 }

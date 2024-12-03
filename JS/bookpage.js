@@ -71,23 +71,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const booking = bookedDatesCache.find((entry) => entry.date === date);
     const header1 = document.createElement("h1");
-    
+
+    header1.innerHTML = "Time";
+    timeContainer.appendChild(header1);
+
     if (booking) {
       const { type } = booking;
       const availableSlots = [];
 
       // Determine available slots
-      if (type === "day") {
+      if (type === "Day (8am - 5pm)") {
         availableSlots.push("Night (6pm - 12mn)");
-      } else if (type === "night") {
+      } else if (type === "Night (6pm - 12mn)") {
         availableSlots.push("Day (8am - 5pm)");
-      } else if (type === "wholeday") {
+      } else if (type === "Whole Day (8am - 12mn)") {
         availableSlots.length = 0; // All slots unavailable
       } else {
         availableSlots.push(
           "Day (8am - 5pm)",
           "Night (6pm - 12mn)",
-          " Whole Day (8am - 12mn)"
+          "Whole Day (8am - 12mn)"
         );
       }
 
@@ -113,17 +116,22 @@ document.addEventListener("DOMContentLoaded", () => {
       [
         "Day (8am - 5pm)",
         "Night (6pm - 12mn)",
-        " Whole Day (8am - 12mn)",
+        "Whole Day (8am - 12mn)",
       ].forEach((slot) => {
         const timeButton = document.createElement("button");
         timeButton.className = "time-btn";
+       
         timeButton.value = slot;
         timeButton.textContent = slot;
         timeButton.addEventListener("click", () => {
           document
             .querySelectorAll(".time-btn")
-            .forEach((t) => t.classList.remove("active"));
+            .forEach((t) => {
+              t.classList.remove("active")
+              timeButton.setAttribute("id", "")
+            });
           timeButton.classList.add("active");
+          timeButton.setAttribute("id", "timeActive");
           selectedTime = timeButton.value;
           updateSummary();
         });
@@ -150,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .querySelectorAll(".day")
           .forEach((d) => d.classList.remove("selected"));
         dayElement.classList.add("selected");
+        dayElement.setAttribute("id", "daySelected");
         selectedDate = date;
         displayTimeSlots(date);
         d_t_section.scrollBy(0, 500);
@@ -407,43 +416,47 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   };
-  
 
   // Collect Payment Method
   const collectPaymentMethod = () => {
     const paymentMethodSelect = document.querySelector("#payment-method");
-    const paymentOnlineMethodSelected = document.querySelector("#online-payment-group");
-    const paymentMethodOnline = document.querySelector("#payment-method-online");
-    const paymentOnsiteMethodSelected = document.querySelector("#onsite-payment");
+    const paymentOnlineMethodSelected = document.querySelector(
+      "#online-payment-group"
+    );
+    const paymentMethodOnline = document.querySelector(
+      "#payment-method-online"
+    );
+    const paymentOnsiteMethodSelected =
+      document.querySelector("#onsite-payment");
     const payment = document.querySelector("#payment");
-  
+
     const initialOption = serviceDropdown.selectedOptions[0];
     const amount = document.querySelector("#amounts");
     const payNowBtn = document.querySelector(".payNow");
     const balanceElement = document.querySelector(".balance");
-  
+
     const selectedPrice = initialOption.getAttribute("data-price");
     if (serviceDropdown) {
       document.querySelectorAll(".subTotal, .total").forEach((subTotal) => {
         subTotal.textContent = selectedPrice;
       });
     }
-  
+
     document.querySelectorAll(".event").forEach((events) => {
       events.textContent = selectedService;
     });
-  
+
     if (paymentMethodOnline) {
       paymentMethodOnline.addEventListener("change", () => {
         const paymentMethodOl = paymentMethodOnline.value;
         document.querySelector(".eWallet").textContent = paymentMethodOl;
       });
     }
-  
+
     if (paymentMethodSelect) {
       paymentMethodSelect.addEventListener("change", () => {
         paymentMethod = paymentMethodSelect.value;
-  
+
         if (paymentMethod == "Online Payment") {
           payment.style.display = "flex";
           paymentOnlineMethodSelected.style.display = "flex";
@@ -456,39 +469,61 @@ document.addEventListener("DOMContentLoaded", () => {
         updateSummary();
         console.log(paymentMethod);
       });
-  
+
       payNowBtn.addEventListener("click", () => {
         // Get the selected service option for precise pricing
-        const selectedServiceOption = serviceDropdown.options[serviceDropdown.selectedIndex];
+        const selectedServiceOption =
+          serviceDropdown.options[serviceDropdown.selectedIndex];
         const prices = selectedServiceOption.getAttribute("data-price");
-        
+
         // Remove any non-digit characters and parse the prices
         const cleanSelectedPrice = prices.replace(/[^\d]/g, "");
-        const selectedPriceValue = parseInt(cleanSelectedPrice) || 0; 
+        const selectedPriceValue = parseInt(cleanSelectedPrice) || 0;
         const amountValue = parseInt(amount.value) || 0;
-  
+
         // Validate payment amount
         if (amountValue < selectedPriceValue) {
           // Create a more specific error message based on the service type
           const serviceName = selectedServiceOption.text;
-          alert(`Insufficient payment for ${serviceName}. Minimum amount required is ₱${selectedPriceValue.toLocaleString()}.`);
-          amount.value = ''; // Clear the input
-          balanceElement.textContent = '0'; // Reset balance
-          return; // Stop further processing
-        }
-  
+         
+          e1.style.display = "block";
+          e1.innerHTML = `Insufficient payment for ${serviceName}. Minimum amount required is ₱${selectedPriceValue.toLocaleString()}.`
+          setTimeout(() => {
+            e1.style.display = "none";
+          }, 3000);
+          amount.value = ""; // Clear the input
+          balanceElement.textContent = "0"; // Reset balance
+          return false; // Stop further processing
+        } 
+
+        
+
         // If amount is sufficient, proceed with payment processing
         document.querySelector(".online-payment").style.display = "flex";
-        document.querySelector(".paid").textContent = `${amountValue.toLocaleString()}`;
-  
+        document.querySelector(
+          ".paid"
+        ).textContent = `${amountValue.toLocaleString()}`;
+
         // Calculate the balance
         const balance = amountValue - selectedPriceValue;
-  
+
         // Update the balance element
         balanceElement.textContent = `₱ ${balance.toLocaleString()}`;
+
+        payNowBtn.setAttribute("disabled", true);
+        amount.setAttribute("readonly", true);
       });
+      
+    }
+    if (document.querySelector(".online-payment").style.display === "none"){
+      console.log("oo na");
+      return false;
+    } else {
+      console.log("tangina");
+      return true;
     }
   };
+  
 
   // Populate Summary
   const populateSummary = () => {
@@ -514,6 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
         return;
       }
+      const email = document.querySelector("#summary-email").getAttribute("data-email");
 
       // Proceed with populating the summary
       summaryFields.service.textContent = selectedService || "Not selected";
@@ -521,17 +557,17 @@ document.addEventListener("DOMContentLoaded", () => {
       summaryFields.date.textContent = selectedTime || "Not selected";
       summaryFields.name.textContent =
         `${userInfo["full-name"]}` || "Not provided";
-      summaryFields.email.textContent = userInfo.email || "Not provided";
+      summaryFields.email.textContent = email || "Not provided";
       summaryFields.payment.textContent = paymentMethod || "Not selected";
       updateSummary();
     });
 
-    finishButton.addEventListener("click", () => {
-      e5.style.display = "block";
-      setTimeout(() => {
-        e5.style.display = "none";
-      }, 3000);
-    });
+    // finishButton.addEventListener("click", () => {
+    //   e5.style.display = "block";
+    //   setTimeout(() => {
+    //     e5.style.display = "none";
+    //   }, 3000);
+    // });
   };
 
   // Next and Previous button functionality
@@ -617,9 +653,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case 1: // Date & Time
         return selectedDate && selectedTime;
       case 2: // User Information
-        return document.querySelector("#user-info-form")?.checkValidity();
+        return checkValidity();
       case 3: // Payment
-        return paymentMethod && paymentMethod.trim();
+        return paymentMethod && paymentMethod.trim() && collectPaymentMethod();
       default:
         return true;
     }
@@ -627,10 +663,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const validateCurrentSection = () => validateSection(currentSection);
 
-  // Validate user information
-  const validateUserInfo = () => {
-    const form = document.querySelector("#user-info-form");
-    return form.checkValidity();
+  const checkValidity = () => {
+    const name = document.querySelector("#full-name");
+    const guest = document.querySelector("#guest");
+    const phone = document.querySelector("#phone");
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const guestRegex = /^[0-9]+$/;
+    const phoneRegex = /^[0-9]{11}$/;
+
+    if (!nameRegex.test(name.value.trim())) {
+      return false; // Name invalid
+    }
+    if (!guestRegex.test(guest.value.trim())) {
+      return false; // Guest input invalid
+    }
+    if (!phoneRegex.test(phone.value.trim())) {
+      return false; // Phone input invalid
+    }
+
+    return true;
   };
 
   // Update sections visibility
@@ -713,12 +765,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initialize();
 });
-// var body = document.getElementsByTagName('body')[0];
-// function disableBodyScroll() {
-//     body.style.overflowY = 'hidden';
-//     console.log("over")
-// }
-// function enableBodyScroll() {
-//     body.style.overflowY = 'auto';
-//     console.log("not")
-// }
+
+// modal terms and conditions
+(function () {
+  var $content = $(".modal_info").detach();
+
+  $(".open_button").on("click", function (e) {
+    modal.open({
+      content: $content,
+      width: 540,
+      height: 270,
+    });
+    $content.addClass("modal_content");
+    $(".modal1, .modal_overlay").addClass("display");
+    $(".open_button").addClass("load");
+  });
+})();
+
+var modal = (function () {
+  var $close = $(
+    '<button role="button" class="modal_close" title="Close"><span class="spans"></span></button>'
+  );
+  var $content = $('<div class="modal_content"/>');
+  var $modal = $('<div class="modal1"/>');
+  var $window = $(window);
+
+  $modal.append($content, $close);
+
+  $close.on("click", function (e) {
+    $(".modal1, .modal_overlay").addClass("conceal");
+    $(".modal1, .modal_overlay").removeClass("display");
+    $(".open_button").removeClass("load");
+    e.preventDefault();
+    modal.close();
+  });
+
+  return {
+    center: function () {
+      var top = Math.max($window.height() - $modal.outerHeight(), 0) / 2;
+      var left = Math.max($window.width() - $modal.outerWidth(), 0) / 2;
+      $modal.css({
+        top: top + $window.scrollTop(),
+        left: left + $window.scrollLeft(),
+      });
+    },
+    open: function (settings) {
+      $content.empty().append(settings.content);
+
+      $modal
+        .css({
+          width: settings.width || "auto",
+          height: settings.height || "auto",
+        })
+        .appendTo("body");
+
+      modal.center();
+      $(window).on("resize", modal.center);
+    },
+    close: function () {
+      $content.empty();
+      $modal.detach();
+      $(window).off("resize", modal.center);
+    },
+  };
+})();

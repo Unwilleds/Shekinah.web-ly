@@ -28,15 +28,59 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
   include '../Assets/Loading_page.php';
   showLoader();
   ?>
-  <navbar-element data-is-logged-in="<?= $isLoggedIn ? 'true' : 'false' ?>"
-    data-username="<?= htmlspecialchars($username) ?>">
+
+  <navbar-element data-is-logged-in="<?= $isLoggedIn ? 'true' : 'false' ?>">
   </navbar-element>
+
+
+  <?php
+  if (isset($_POST["finish-button"]) === "submit") {
+    // Get input values from POST request
+
+    $dom = new DOMDocument();
+    // Get the strong element 
+    $calendar = $dom->getElementById('daySelected');
+    // Get the attribute 
+    $valueDay = $calendar->getAttribute('data-date');
+    $event = filter_var($_POST["service"], FILTER_SANITIZE_STRING);
+    $full_name = filter_var($_POST["full_name"], FILTER_SANITIZE_STRING);
+    $guest_count = filter_var($_POST["guest"], FILTER_VALIDATE_INT);
+    $phone_number = filter_var($_POST["phone"], FILTER_SANITIZE_STRING);
+    $time = filter_var($_POST["timeActive"], FILTER_SANITIZE_STRING);
+
+    // Database connection
+    require_once __DIR__ . "/../Database/database.php";
+
+    // Use a prepared statement to prevent SQL injection
+     $sql = "INSERT INTO booking_record (event, full_name, guest, phone, date, time) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param('ssisss', $event, $full_name, $guest_count, $phone_number, $valueDay, $time);
+
+        if ($stmt->execute()) {
+            echo "New record created successfully for event \"$event\" on \"$valueDay\" at \"$time\" with guest count \"$guest_count\".";
+        } else {
+            echo "Error: {$stmt->error}";
+        }
+    } else {
+        echo "Error preparing the statement: {$conn->error}";
+    }
+}
+
+// Handle email (if applicable)
+$email = $_SESSION["email"] ?? '';
+?>
+
+
   <div class='err'>
-    <div class='errors e1' style="display: none" >Please fill all required fields before finishing.</div>
+    <div class='errors e1' style="display: none">Please fill all required fields before finishing.</div>
     <div class='errors e2' style="display: none">Insufficient payment amount!</div>
     <div class='errors e3' style="display: none">Please complete all required fields before proceeding.</div>
     <div class='errors e4' style="display: none">Please complete all required sections before proceeding.</div>
     <div class='success e5' style="display: none">Booking completed successfully!</div>
+    <div class='success e6' style="display: none"></div>
   </div>
   <main id="container">
     <div class="fv">
@@ -50,40 +94,40 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         <button class="button parallax-btn stagger" style="--delay: 2s;">BOOK NOW</button>
       </div>
     </div>
-  <div class="modal">
-    <div class="modal-content">
-      <!-- Sidebar for navigation -->
-      <div class="sidebar">
-        <h2>Booking Procedure</h2>
-        <ul>
-          <li class="active">Event Type</li>
-          <li>Date & Time</li>
-          <li>Information</li>
-          <li>Payments</li>
-          <li>Summary</li>
-        </ul>
-      </div>
-      <!-- Main content area -->
-      <div class="main-contents">
-        <!-- Service Selection Section -->
-        <div id="service-selection" class="section">
-          <section>
-            <h2>Event Type Selection</h2>
-            <label for="service">Amenities:</label>
-            <select id="service">
-              <option class="disabled" value="0" disabled selected="true">
-                Please select a event type.
-              </option>
-              <option value="event" data-price="₱25,000">
-                Event Package
-              </option>
-              <option value="pool-non-ac" data-price="₱7,500">
-                Pool Event - Non Airconditioned
-              </option>
-              <option value="pool-ac" data-price="₱12,000">
-                Pool Event - With Airconditioned Studio Room
-              </option>
-            </select>
+    <div class="modal">
+      <div class="modal-content">
+        <!-- Sidebar for navigation -->
+        <div class="sidebar">
+          <h2>Booking Procedure</h2>
+          <ul>
+            <li class="active">Event Type</li>
+            <li>Date & Time</li>
+            <li>Information</li>
+            <li>Payments</li>
+            <li>Summary</li>
+          </ul>
+        </div>
+        <!-- Main content area -->
+        <div class="main-contents">
+          <!-- Service Selection Section -->
+          <div id="service-selection" class="section">
+            <section>
+              <h2>Event Type Selection</h2>
+              <label for="service">Amenities:</label>
+              <select id="service">
+                <option class="disabled" value="0" disabled selected="true">
+                  Please select a event type.
+                </option>
+                <option value="event" data-price="₱25,000">
+                  Event Package
+                </option>
+                <option value="pool-non-ac" data-price="₱7,500">
+                  Pool Event - Non Airconditioned
+                </option>
+                <option value="pool-ac" data-price="₱12,000">
+                  Pool Event - With Airconditioned Studio Room
+                </option>
+              </select>
 
               <div class="event-summary" id="event-summary"></div>
             </section>
@@ -92,55 +136,55 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             </div>
           </div>
 
-        <!-- Date & Time Section -->
-        <div id="date-time-section" class="section hidden">
-          <main class="date-time-main" id="date-time-main">
-            <h2>Select Date & Time</h2>
-            <section class="calendar-section" id="calendar-section">
-              <div class="calendar">
-                <div class="calendar-header">
-                  <button id="prev-month" aria-label="Previous Month">
-                    &lt;
-                  </button>
-                  <select id="month-selector" aria-label="Select Month"></select>
-                  <select id="year-selector" aria-label="Select Year"></select>
-                  <button id="next-month" aria-label="Next Month">
-                    &gt;
-                  </button>
+          <!-- Date & Time Section -->
+          <div id="date-time-section" class="section hidden">
+            <main class="date-time-main" id="date-time-main">
+              <h2>Select Date & Time</h2>
+              <section class="calendar-section" id="calendar-section">
+                <div class="calendar">
+                  <div class="calendar-header">
+                    <button id="prev-month" aria-label="Previous Month">
+                      &lt;
+                    </button>
+                    <select id="month-selector" aria-label="Select Month"></select>
+                    <select id="year-selector" aria-label="Select Year"></select>
+                    <button id="next-month" aria-label="Next Month">
+                      &gt;
+                    </button>
+                  </div>
+                  <div class="calendar-days-header">
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                    <span>Sun</span>
+                  </div>
+                  <div class="calendar-days"></div>
+                  <div class="time-slots"></div>
                 </div>
-                <div class="calendar-days-header">
-                  <span>Mon</span>
-                  <span>Tue</span>
-                  <span>Wed</span>
-                  <span>Thu</span>
-                  <span>Fri</span>
-                  <span>Sat</span>
-                  <span>Sun</span>
-                </div>
-                <div class="calendar-days"></div>
-                <div class="time-slots"></div>
-              </div>
-              <!-- Close .calendar -->
-            </section>
-           
-            <section class="time-section" id="time-section">
-              <button class="time-btn" value="Day (8am - 5pm)">
+                <!-- Close .calendar -->
+              </section>
+
+              <section class="time-section" id="time-section">
+                <!-- <button class="time-btn" value="Day (8am - 5pm)">
+                </button>
+                <button class="time-btn" value="Night (6pm - 12mn)">
+                </button>
+                <button class="time-btn" value="Whole Day (8am - 12mn)">
+                </button> -->
+              </section>
+            </main>
+            <div class="navigation-buttons">
+              <button id="date-time-prev" class="prev-button" aria-label="Previous Section">
+                Previous
               </button>
-              <button class="time-btn" value="Night (6pm - 12mn)" >
+              <button id="date-time-next" class="next-button" aria-label="Next Section">
+                Next
               </button>
-              <button class="time-btn" value="Whole Day (8am - 12mn)">
-              </button>
-            </section>
-          </main>
-          <div class="navigation-buttons">
-            <button id="date-time-prev" class="prev-button" aria-label="Previous Section">
-              Previous
-            </button>
-            <button id="date-time-next" class="next-button" aria-label="Next Section">
-              Next
-            </button>
+            </div>
           </div>
-        </div>
 
           <!-- Your Information Section -->
           <div id="your-info" class="section hidden">
@@ -151,11 +195,21 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <input type="text" id="full-name" required />
                 <label for="guest">Guests: </label>
                 <input type="number" id="guest" />
-
-                <!-- <label for="email">Email:</label>
-            <input type="email" id="email" required> -->
                 <label for="phone">Phone Number:</label>
                 <input type="number" id="phone" minlength="11" required />
+
+
+                <div class="btn_container">
+                  <a class="open_button" href="#terms&conditions">Fire Away</a>
+                </div>
+                <div class="modal_info">
+                  <h1>Simple jQuery Modal</h1>
+                  <p>It may not look like much, but it still does exactly what it says straight out of the box.</p>
+                </div>
+                <div class="modal_overlay">
+                </div>
+
+
                 <label for="notes">Notes:</label>
                 <textarea name="notes" id="notes" rows="4"></textarea>
               </form>
@@ -181,8 +235,8 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 </select>
                 <div class="payment" id="payment" style="display: none">
                   <select id="payment-method-online">
-                    <option value="Paymaya">Paymaya</option>
-                    <option value="Paypal">Paypal</option>
+                    <option value="Paymaya">BDO</option>
+                    <option value="Paypal">BPI</option>
                     <option value="Gcash">Gcash</option>
                   </select>
                   <div class="amount">
@@ -228,7 +282,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
               <p><strong>Date:</strong> <span id="summary-date"></span></p>
               <p><strong>Time:</strong> <span id="summary-time"></span></p>
               <p><strong>Name:</strong> <span id="summary-name"></span></p>
-              <p><strong>Email:</strong> <span id="summary-email"></span></p>
+              <p><strong>Email:</strong> <span id="summary-email" data-email="<?= $email ?>"></span></p>
               <p>
                 <strong>Payment Method:</strong>
                 <span id="summary-payment"></span>
@@ -236,7 +290,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             </section>
             <div class="navigation-buttons">
               <button id="summary-prev" class="prev-button">Previous</button>
-              <button id="finish-button" class="finish-button">
+              <button id="finish-button" class="finish-button" value="submit">
                 Finish Booking
               </button>
             </div>
@@ -247,9 +301,9 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
   </main>
 
   <?php
-    require_once __DIR__ . '/../Assets/footer.php';
-    require_once __DIR__ . '/../Assets/Html_footer.php';
-    ?>
+  require_once __DIR__ . '/../Assets/footer.php';
+  require_once __DIR__ . '/../Assets/Html_footer.php';
+  ?>
   <script src="../JS/bookpage.js" defer></script>
 </body>
 

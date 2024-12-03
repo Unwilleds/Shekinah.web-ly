@@ -1,7 +1,6 @@
 class Navbar extends HTMLElement {
   connectedCallback() {
     const isLoggedIn = this.getAttribute("data-is-logged-in") === "true";
-    const username = this.getAttribute("data-username");
 
     this.innerHTML = `
       <section class="navigation">
@@ -20,6 +19,10 @@ class Navbar extends HTMLElement {
                 </li>
                 <li>
                   <a class="nav-link" href="./offers.php">Offers</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="./gallerypage.php">Gallery</a>
+                 
                 </li>
                 <li>
                   <a class="nav-link" href="./aboutpage.php">About Us</a>
@@ -170,6 +173,7 @@ $("a[href='#top']").click(function() {
   $("html, body").animate({ scrollTop: 0 }, "slow");
   
 });
+
 
 customElements.define("navbar-element", Navbar);
 
