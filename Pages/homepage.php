@@ -80,7 +80,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             <h2 class="card-title">Weddings</h2>
             <p class="copy">Celebrate your love story in a breathtaking setting with beautiful ceremony and stunning
               decor.</p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
         <div class="main-card">
@@ -88,14 +88,14 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             <h2 class="card-title">Themed Parties</h2>
             <p class="copy">From seasonal celebrations to costume parties, our venue transforms into a vibrant space
               tailored to your theme.</p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
         <div class="main-card">
           <div class="card-content">
             <h2 class="card-title">Family Reunions</h2>
             <p class="copy">Bring your family together for a fun-filled reunion at our venue.</p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
         <div class="main-card">
@@ -103,7 +103,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             <h2 class="card-title">Pool Parties</h2>
             <p class="copy">Dive into fun with our exciting pool parties! Our poolside area provides a vibrant
               atmosphere for enjoying. </p>
-            <button class="card-body button">Book Now</button>
+            <button class="card-body button"><a href="bookpage.php">Book Now</a></button>
           </div>
         </div>
       </div>
@@ -119,31 +119,31 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         <div class="h1"> COMING SOON!!</div>
       </center>
       <div class="list">
-        <img class="ukiyo" href="../../Images/img1.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img2.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img3.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img4.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img5.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img6.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img7.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img8.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img9.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img10.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img11.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img12.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img13.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img14.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img15.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img16.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img17.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img18.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img19.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img20.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img21.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img22.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img23.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img24.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" href="../../Images/img25.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img1.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img2.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img3.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img4.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img5.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img6.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img7.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img8.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img9.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img10.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img11.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img12.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img13.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img14.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img15.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img16.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img17.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img18.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img19.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img20.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img21.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img22.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img23.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img24.jpg" alt="Shekinah"></img>
+        <img class="ukiyo" src="../../Images/img25.jpg" alt="Shekinah"></img>
 
         <!-- <a href="https://www.facebook.com/photo.php?fbid=511398648143492&set=pb.100078200832295.-2207520000&type=3" target="_blank"> <img class="ukiyo"
             src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/458225021_511401764809847_2394389677825235738_n.jpg?stp=cp6_dst-jpg&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHmElnIBAcM3ERK3nO-ZNT0z19kClaL_vXPX2QKVov-9SEJAOJDU4BS1OPinrZYYNKDkEUt3aUXNoU1vP8dj3_c&_nc_ohc=5bb6g3L9VvkQ7kNvgEMwSR3&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=AXSisI8a3x7EF0tacaOLX7l&oh=00_AYCFyxuW8rbRFXXgr4QUyWQ3eoDRGCvm2HiTTlQFNpxTig&oe=6742313B"
@@ -354,46 +354,11 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
     <!-- <a href="/../User-auth/user_logout.php" class="btn btn-danger rounded-0 scrollEffect">Logout</a> -->
 
   </main>
-  <footer>
-    <div class="site-footer">
-      <div class="stack">
-        <p class="logo-name">Shekinah Event Place Rental</p>
-        <p class="location">
-          49 San Ignacio St, Poblacion, <br />San Jose del Monte City, Bulacan
-        </p>
-      </div>
-      <div class="site-link-group">
-        <ul class="site-links">
-          <li><a class="link" href="">About Us</a></li>
-          <li><a class="link" href="">Inquire</a></li>
-          <li><a class="link" href="">FAQ's</a></li>
-        </ul>
-        <ul class="social-links">
-          <li>
-            <a class="socials" href=""><i class="fa-brands fa-facebook"></i></a>
-          </li>
-          <li>
-            <a class="socials" href=""><i class="fa-brands fa-instagram"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom-footer">
-      <p class="text-link">
-        <a href="">Contact</a>
-        |
-        <a href="">Imprint</a>
-        |
-        <a href="">Data Privacy</a>
-      </p>
-      <p class="company-name stagger" style="--delay: 1s">Shekinah</p>
-    </div>
-    <a href='#top' class="goUp"><i class="fa-solid fa-arrow-up"></i></a>
-  </footer>
 
   <?php
-  require_once __DIR__ . '/../Assets/Html_footer.php';
-  ?>
+    require_once __DIR__ . '/../Assets/footer.php';
+    require_once __DIR__ . '/../Assets/Html_footer.php';
+    ?>
 </body>
 
 </html>

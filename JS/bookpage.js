@@ -119,6 +119,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const fetchBookedDates = async () => {
+    try {
+      const response = await fetch("/../Pages/book-fetch.php");
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching booked dates:", error);
+      return [];
+    }
+  };
+
+  const populateCalendar = async (year, month) => {
+    const bookedDates = await fetchBookedDates();
+
+    // Clear current calendar
+    calendarDaysContainer.innerHTML = "";
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const formattedDate = date.toISOString().split("T")[0]; // Format: YYYY-MM-DD
+
+      // Check if the date is booked
+      const isBooked = bookedDates.includes(formattedDate);
+      const dayClass = isBooked ? "booked" : "available";
+
+      // Create day element
+      const dayElement = createDayElement(day, dayClass, formattedDate);
+      calendarDaysContainer.appendChild(dayElement);
+    }
+  };
+
+  // Populate calendar with current month
+  populateSelectors();
+  populateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+
+  // Handle month and year change
+  monthSelector.addEventListener("change", () => {
+    const selectedMonth = parseInt(monthSelector.value, 10);
+    const selectedYear = parseInt(yearSelector.value, 10);
+    populateCalendar(selectedYear, selectedMonth);
+  });
+
+  yearSelector.addEventListener("change", () => {
+    const selectedMonth = parseInt(monthSelector.value, 10);
+    const selectedYear = parseInt(yearSelector.value, 10);
+    populateCalendar(selectedYear, selectedMonth);
+  });
+
   // Handle Service Selection
   const handleServiceSelection = () => {
     const eventSummaryDisplay = document.querySelector("#event-summary");

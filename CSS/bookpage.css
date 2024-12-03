@@ -401,9 +401,14 @@ select:focus {
 
 /* Calendar styling */
 
+.date-time-section{
+  min-height: 98%;
+  height: 98%!important;
+}
+
 .date-time-main {
-  height: 560px;
-  max-height: 560px;
+  height: 530px;
+  max-height: 530px;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -771,6 +776,16 @@ input[type=number] {
   cursor: not-allowed;
 }
 
+.day.booked {
+  background-color: #f44336;
+  color: #fff;
+  cursor: not-allowed;
+}
+.day.booked:hover {
+  background-color: #d32f2f;
+}
+
+
 @media only screen and (width < 34.25em) {
   body {
     overflow: auto;
@@ -842,4 +857,13 @@ input[type=number] {
   .day {
     padding: 10px 5px;
   }
+}
+
+.company-name img{
+  width: calc(13vw + 10em);
+  color: var(--base-color);
+  text-transform: uppercase;
+  font-weight: bolder;
+  text-transform: capitalize;
+  font-family: "Bacalisties", sans-serif;
 }

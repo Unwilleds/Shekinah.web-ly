@@ -250,45 +250,11 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
       </div>
     </div>
   </main>
-  <footer>
-    <div class="site-footer">
-      <div class="stack">
-        <p class="logo-name">Shekinah Event Place Rental</p>
-        <p class="location">
-          49 San Ignacio St, Poblacion, <br />San Jose del Monte City, Bulacan
-        </p>
-      </div>
-      <div class="site-link-group">
-        <ul class="site-links">
-          <li><a class="link" href="">About Us</a></li>
-          <li><a class="link" href="">Inquire</a></li>
-          <li><a class="link" href="">FAQ's</a></li>
-        </ul>
-        <ul class="social-links">
-          <li>
-            <a class="socials" href=""><i class="fa-brands fa-facebook"></i></a>
-          </li>
-          <li>
-            <a class="socials" href=""><i class="fa-brands fa-instagram"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom-footer">
-      <p class="text-link">
-        <a href="">Contact</a>
-        |
-        <a href="">Imprint</a>
-        |
-        <a href="">Data Privacy</a>
-      </p>
-      <p class="company-name stagger" style="--delay: 1s">Shekinah</p>
-    </div>
-    <a href='#top' class="goUp"><i class="fa-solid fa-arrow-up"></i></a>
-  </footer>
+
   <?php
-  require_once __DIR__ . '/../Assets/Html_footer.php';
-  ?>
+    require_once __DIR__ . '/../Assets/footer.php';
+    require_once __DIR__ . '/../Assets/Html_footer.php';
+    ?>
   <script src="../JS/bookpage.js"></script>
 </body>
 

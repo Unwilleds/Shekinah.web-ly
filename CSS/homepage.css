@@ -314,16 +314,21 @@ section {
   transition: all calc(var(--d) * 2) var(--e);
 }
 .main-card:nth-child(1)::before {
-  background-image: url("../Images/bg3.jpg");
+  background-image: url("../Images/img26.jpg");
 }
 .main-card:nth-child(2)::before {
-  background-image: url("../Images/bg5.jpg");
+  background-image: url("../Images/img27.jpg");
+
 }
 .main-card:nth-child(3)::before {
-  background-image: url("../Images/bg6.jpg");
+  background-image: url("../Images/pol.jpg");
+  background-position: center;
+
 }
 .main-card:nth-child(4)::before {
-  background-image: url("../Images/bg7.jpg");
+  background-image: url("../Images/bg8.jpg");
+  background-position: bottom;
+
 }
 
 .card-content {
@@ -341,20 +346,25 @@ section {
 }
 
 .card-title {
-  font-size: 2.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 4.5rem;
   font-weight: 300;
   line-height: 1.2;
 }
 
 .copy {
-  font-family: var(--font-serif);
   font-size: 1.5em;
-  font-style: italic;
   line-height: 1.1em;
 }
 
 .card-body.button {
   padding: 0.6em 1.3em;
+}
+
+.card-body a{
+  text-decoration: none;
+  color: white;
 }
 
 @media (hover: hover) and (min-width: 600px) {
@@ -363,7 +373,7 @@ section {
   }
 
   .card-content {
-    transform: translateY(calc(100% + 2em));
+    transform: translateY(calc(100%));
   }
 
   .main-card:hover,
@@ -380,7 +390,7 @@ section {
     }
   }
   .copy {
-    font-size: 2em;
+    font-size: 1.2em;
   }
 
   .main-card:hover:after,
