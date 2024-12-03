@@ -481,8 +481,13 @@ select:focus {
   transition: all 0.3s ease;
 }
 
-.day:hover {
+.day:hover{
   background-color: #e0f7fa;
+  
+}
+
+.day.day.available:hover {
+  background-color: var(--primary-color);
 }
 
 .day.available {

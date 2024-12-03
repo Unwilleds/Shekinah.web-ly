@@ -92,60 +92,6 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             </div>
           </div>
 
-          <!-- Date & Time Section -->
-          <div id="date-time-section" class="section hidden">
-            <main class="date-time-main" id="date-time-main" >
-              <h2>Select Date & Time</h2>
-              <section class="calendar-section" id="calendar-section">
-                <div class="calendar">
-                  <div class="calendar-header">
-                    <button id="prev-month" aria-label="Previous Month">
-                      &lt;
-                    </button>
-                    <select id="month-selector" aria-label="Select Month"></select>
-                    <select id="year-selector" aria-label="Select Year"></select>
-                    <button id="next-month" aria-label="Next Month">
-                      &gt;
-                    </button>
-                  </div>
-                  <div class="calendar-days-header">
-                    <span>Mon</span>
-                    <span>Tue</span>
-                    <span>Wed</span>
-                    <span>Thu</span>
-                    <span>Fri</span>
-                    <span>Sat</span>
-                    <span>Sun</span>
-                  </div>
-                  <div class="calendar-days"></div>
-                  <div class="time-slots"></div>
-                </div>
-                <!-- Close .calendar -->
-              </section>
-              <section class="time-section" id="time-section">
-                <center>
-                  <h1>Time</h1>
-                </center>
-                <button class="time-btn" value="Day (8am - 5pm)" aria-pressed="false">
-                  Day (8am - 5pm)
-                </button>
-                <button class="time-btn" value="Night (6pm - 12mn)" aria-pressed="false">
-                  Night (6pm - 12mn)
-                </button>
-                <button class="time-btn" value="Whole Day (8am - 12mn)" aria-pressed="false">
-                  Whole Day (8am - 12mn)
-                </button>
-              </section>
-            </main>
-            <div class="navigation-buttons">
-              <button id="date-time-prev" class="prev-button" aria-label="Previous Section">
-                Previous
-              </button>
-              <button id="date-time-next" class="next-button" aria-label="Next Section">
-                Next
-              </button>
-            </div>
-          </div>
         <!-- Date & Time Section -->
         <div id="date-time-section" class="section hidden">
           <main class="date-time-main" id="date-time-main">
@@ -176,10 +122,8 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
               </div>
               <!-- Close .calendar -->
             </section>
+           
             <section class="time-section" id="time-section">
-              <center>
-                <h1>Time</h1>
-              </center>
               <button class="time-btn" value="Day (8am - 5pm)">
               </button>
               <button class="time-btn" value="Night (6pm - 12mn)" >

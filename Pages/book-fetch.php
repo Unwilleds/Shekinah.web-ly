@@ -5,7 +5,7 @@ ob_start(); // Start output buffering
 $host = "localhost";
 $user = "root";
 $password = "";
-$database = "bookings";
+$database = "login-register";
 
 $conn = new mysqli($host, $user, $password, $database);
 
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "SELECT event_date, time_period FROM book";
+$query = "SELECT date, time FROM booking_record";
 $result = $conn->query($query);
 
 header('Content-Type: application/json');
@@ -22,8 +22,8 @@ $bookedDates = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $bookedDates[] = [
-            'date' => $row['event_date'],
-            'type' => $row['time_period']
+            'date' => $row['date'],
+            'type' => $row['time']
         ];
     }
 }
