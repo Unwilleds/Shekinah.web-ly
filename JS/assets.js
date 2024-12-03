@@ -22,6 +22,10 @@ class Navbar extends HTMLElement {
                   <a class="nav-link" href="./offers.php">Offers</a>
                 </li>
                 <li>
+                  <a class="nav-link" href="./gallerypage.php">Gallery</a>
+                 
+                </li>
+                <li>
                   <a class="nav-link" href="./aboutpage.php">About Us</a>
                  
                 </li>
