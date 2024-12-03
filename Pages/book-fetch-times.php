@@ -1,39 +1,38 @@
 <?php
-// Database connection
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "bookings";
+// Retrieve JSON data from the request
+$data = json_decode(file_get_contents("php://input"), true);
 
-$conn = new mysqli($host, $user, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Validate the received data
+if (!$data || empty($data['daySelected']) || empty($data['full_name']) || empty($data['service']) || empty($data['guest']) || empty($data['phone']) || empty($data['timeActive'])) {
+    http_response_code(400); // Bad request
+    echo "Invalid input.";
+    exit;
 }
 
-// Query to fetch booked dates and times
-$query = "SELECT event_date, time_slot FROM bookings";
-$result = $conn->query($query);
+// Extract data
+$daySelected = $data['daySelected'];
+$full_name = $data['full_name'];
+$service = $data['service'];
+$guest = (int) $data['guest'];
+$phone = $data['phone'];
+$timeActive = $data['timeActive'];
 
-header('Content-Type: application/json');
-$bookedData = [];
+// Connect to the database
+require_once __DIR__ . "/../Database/database.php";
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $date = $row['event_date'];
-        $timeSlot = $row['time_slot']; // Assume 'day' or 'night' is stored in 'time_slot'
+// Insert into database
+$sql = "INSERT INTO booking_record (event, full_name, guest, phone, date, time)
+        VALUES ('$service', '$full_name', '$guest', '$phone', '$daySelected', '$timeActive')";
 
-        if (!isset($bookedData[$date])) {
-            $bookedData[$date] = ['day' => false, 'night' => false];
-        }
-
-        $bookedData[$date][$timeSlot] = true;
-    }
+if ($conn->query($sql) === TRUE) {
+    echo '<script> 
+      e5.style.display = "block";
+      setTimeout(() => {
+        e5.style.display = "none";
+      }, 3000);
+   </script>';
+} else {
+    http_response_code(500); // Internal server error
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
-
-// Return the booked data as JSON
-echo json_encode($bookedData);
-
-$conn->close();
 ?>
