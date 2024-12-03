@@ -33,6 +33,90 @@ body {
   flex-direction: column;
 }
 
+.contents-body {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-60%);
+  z-index: 9999;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.contents-title {
+  font-size: calc(3vw + 2.5rem);
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  user-select: none;
+  padding-inline: 10px;
+}
+
+.contents-p {
+  font-size: calc(1vw + 1rem);
+  font-weight: 400;
+  color: white;
+  line-height: 1.3em;
+  text-align: center;
+  user-select: none;
+  width: 50%;
+  padding-inline: 10px;
+  margin-bottom: 0.5em;
+}
+
+.company-name img {
+  width: calc(13vw + 10em);
+  color: var(--base-color);
+  text-transform: uppercase;
+  font-weight: bolder;
+  text-transform: capitalize;
+  font-family: "Bacalisties", sans-serif;
+  margin-bottom: 1em;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+
+  margin-bottom: 3em;
+}
+
+.main .img1 {
+  width: 100%!important;
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+  filter: brightness(80%);
+}
+
+@media screen and (width < 50em) {
+  .contents-p {
+    width: 100%;
+  }
+}
+
+
+
+section{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#container{
+  position: relative;
+  z-index: 4;
+  background: var(--base-color);
+  margin-bottom: 60vh;
+  border-radius: 30px;
+  padding-bottom: 5em;
+}
+
 .gallery-container {
   flex: 1;
   padding-top: 100px; /* Adds space below the navbar */
@@ -112,7 +196,7 @@ footer a:hover {
   display: none;
 }
 
-content-container {
+.content-container {
   display: flex;
   justify-content: space-between; /* Spaces the image and content equally */
   align-items: center; /* Aligns the image and text vertically */
@@ -148,23 +232,6 @@ content-container {
   margin: 20px; /* Adds outer margins around the entire text block */
 }
 
-.main {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-
-  margin-bottom: 3em;
-}
-
-.main .img1 {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: contain;
-  filter: brightness(80%);
-}
 
 
 

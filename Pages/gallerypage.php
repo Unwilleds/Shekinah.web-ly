@@ -21,7 +21,7 @@ $imageCount = 24; // Total number of images
     require_once __DIR__ . '/../Assets/Gsap_cdn.php';
     ?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../CSS/aboutpage.css" />
+    <link rel="stylesheet" href="../CSS/gallery.css" />
 
 </head>
 
@@ -61,6 +61,7 @@ $imageCount = 24; // Total number of images
         </div>
         </div>
     </div>
+    </main>
     
     <?php
     require_once __DIR__ . '/../Assets/footer.php';
