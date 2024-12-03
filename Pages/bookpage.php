@@ -50,40 +50,40 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         <button class="button parallax-btn stagger" style="--delay: 2s;">BOOK NOW</button>
       </div>
     </div>
-    <div class="modal">
-      <div class="modal-content">
-        <!-- Sidebar for navigation -->
-        <div class="sidebar">
-          <h2>Booking Procedure</h2>
-          <ul>
-            <li class="active">Event Type</li>
-            <li>Date & Time</li>
-            <li>Information</li>
-            <li>Payments</li>
-            <li>Summary</li>
-          </ul>
-        </div>
-        <!-- Main content area -->
-        <div class="main-contents">
-          <!-- Service Selection Section -->
-          <div id="service-selection" class="section">
-            <section>
-              <h2>Event Type Selection</h2>
-              <label for="service">Amenities:</label>
-              <select id="service">
-                <option class="disabled" value="0" disabled selected="true">
-                  Please select a event type.
-                </option>
-                <option value="event" data-price="₱25,000">
-                  Event Package
-                </option>
-                <option value="pool-non-ac" data-price="₱7,500">
-                  Pool Event - Non Airconditioned
-                </option>
-                <option value="pool-ac" data-price="₱12,000">
-                  Pool Event - With Airconditioned Studio Room
-                </option>
-              </select>
+  <div class="modal">
+    <div class="modal-content">
+      <!-- Sidebar for navigation -->
+      <div class="sidebar">
+        <h2>Booking Procedure</h2>
+        <ul>
+          <li class="active">Event Type</li>
+          <li>Date & Time</li>
+          <li>Information</li>
+          <li>Payments</li>
+          <li>Summary</li>
+        </ul>
+      </div>
+      <!-- Main content area -->
+      <div class="main-contents">
+        <!-- Service Selection Section -->
+        <div id="service-selection" class="section">
+          <section>
+            <h2>Event Type Selection</h2>
+            <label for="service">Amenities:</label>
+            <select id="service">
+              <option class="disabled" value="0" disabled selected="true">
+                Please select a event type.
+              </option>
+              <option value="event" data-price="₱25,000">
+                Event Package
+              </option>
+              <option value="pool-non-ac" data-price="₱7,500">
+                Pool Event - Non Airconditioned
+              </option>
+              <option value="pool-ac" data-price="₱12,000">
+                Pool Event - With Airconditioned Studio Room
+              </option>
+            </select>
 
               <div class="event-summary" id="event-summary"></div>
             </section>
@@ -146,6 +146,57 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
               </button>
             </div>
           </div>
+        <!-- Date & Time Section -->
+        <div id="date-time-section" class="section hidden">
+          <main class="date-time-main" id="date-time-main">
+            <h2>Select Date & Time</h2>
+            <section class="calendar-section" id="calendar-section">
+              <div class="calendar">
+                <div class="calendar-header">
+                  <button id="prev-month" aria-label="Previous Month">
+                    &lt;
+                  </button>
+                  <select id="month-selector" aria-label="Select Month"></select>
+                  <select id="year-selector" aria-label="Select Year"></select>
+                  <button id="next-month" aria-label="Next Month">
+                    &gt;
+                  </button>
+                </div>
+                <div class="calendar-days-header">
+                  <span>Mon</span>
+                  <span>Tue</span>
+                  <span>Wed</span>
+                  <span>Thu</span>
+                  <span>Fri</span>
+                  <span>Sat</span>
+                  <span>Sun</span>
+                </div>
+                <div class="calendar-days"></div>
+                <div class="time-slots"></div>
+              </div>
+              <!-- Close .calendar -->
+            </section>
+            <section class="time-section" id="time-section">
+              <center>
+                <h1>Time</h1>
+              </center>
+              <button class="time-btn" value="Day (8am - 5pm)">
+              </button>
+              <button class="time-btn" value="Night (6pm - 12mn)" >
+              </button>
+              <button class="time-btn" value="Whole Day (8am - 12mn)">
+              </button>
+            </section>
+          </main>
+          <div class="navigation-buttons">
+            <button id="date-time-prev" class="prev-button" aria-label="Previous Section">
+              Previous
+            </button>
+            <button id="date-time-next" class="next-button" aria-label="Next Section">
+              Next
+            </button>
+          </div>
+        </div>
 
           <!-- Your Information Section -->
           <div id="your-info" class="section hidden">
@@ -255,7 +306,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
     require_once __DIR__ . '/../Assets/footer.php';
     require_once __DIR__ . '/../Assets/Html_footer.php';
     ?>
-  <script src="../JS/bookpage.js"></script>
+  <script src="../JS/bookpage.js" defer></script>
 </body>
 
 </html>

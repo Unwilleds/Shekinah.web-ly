@@ -34,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let userInfo = {};
   let paymentMethod = null;
 
-  // const ws = new WebSocket("wss://" + location.host + "/")
-
   const months = [
     "January",
     "February",
@@ -50,56 +48,155 @@ document.addEventListener("DOMContentLoaded", () => {
     "November",
     "December",
   ];
-
+  
   const currentDate = new Date();
+  let bookedDatesCache = []; // Cache for booked dates
+  
+// Fetch booked dates and their booking types
+const fetchBookedDates = async () => {
+  try {
+    const response = await fetch("../../Pages/book-fetch.php");
+    // Expected format: [{ date: "YYYY-MM-DD", type: "day" }, { date: "YYYY-MM-DD", type: "wholeday" }]
+    bookedDatesCache = await response.json();
+  } catch (error) {
+    console.error("Error fetching booked dates:", error);
+    bookedDatesCache = [];
+  }
+};
 
-  // Create a Day Element
-  const createDayElement = (text, className, date = null) => {
-    const dayElement = document.createElement("div");
-    const d_t_section = document.getElementById("date-time-main");
-    dayElement.className = `day ${className}`;
-    dayElement.textContent = text;
-    if (date && className === "available") {
-      dayElement.setAttribute("data-date", date);
-      dayElement.addEventListener("click", () => {
-        document
-          .querySelectorAll(".day")
-          .forEach((d) => d.classList.remove("selected"));
-        dayElement.classList.add("selected");
-        selectedDate = date;
-        d_t_section.scrollBy(0, 500);
-        updateSummary();
-        console.log(date);
-      });
+// Display time slots based on booking availability
+const displayTimeSlots = (date) => {
+  const timeContainer = document.getElementById("time-section");
+  timeContainer.innerHTML = ""; // Clear previous slots
+
+  const booking = bookedDatesCache.find((entry) => entry.date === date);
+
+  if (booking) {
+    const { type } = booking;
+    const availableSlots = [];
+
+    // Determine available slots
+    if (type === "day") {
+      availableSlots.push("Night (6pm - 12mn)");
+    } else if (type === "night") {
+      availableSlots.push("Day (8am - 5pm)");
+    } else if (type === "wholeday") {
+      availableSlots.length = 0; // All slots unavailable
+    } else {
+      availableSlots.push("Day (8am - 5pm)", "Night (6pm - 12mn)", " Whole Day (8am - 12mn)");
     }
-    return dayElement;
-  };
 
-  // // Create a Time Element
-  // const createTimeElement = (text, className, date = null) => {
-  //   const TimeElement = document.createElement("div");
-  //   const d_t_section = document.getElementById("date-time-main");
-  //   dayElement.className = `day ${className}`;
-  //   dayElement.textContent = text;
-  //   if (date && className === "available") {
-  //     dayElement.setAttribute("data-date", date);
-  //     dayElement.addEventListener("click", () => {
-  //       document.querySelectorAll(".day").forEach(d => d.classList.remove("selected"));
-  //       dayElement.classList.add("selected");
-  //       selectedDate = date;
-  //       d_t_section.scrollBy(0, 500);
-  //     });
-  //   }
-  //   return dayElement;
+    availableSlots.forEach((slot) => {
+      const timeButton = document.createElement("button");
+      timeButton.className = "time-btn";
+      timeButton.textContent = slot;
+      timeButton.value = slot;
+      timeButton.addEventListener("click", () => {
+        document.querySelectorAll(".time-btn").forEach((t) => t.classList.remove("active"));
+        timeButton.classList.add("active");
+        selectedTime = timeButton.value;
+        updateSummary(); // Update reservation summary
+      });
+      timeContainer.appendChild(timeButton);
+    });
+
+    timeContainer.style.display = availableSlots.length > 0 ? "flex" : "none";
+  } else {
+    // If no booking exists for the day, show all slots
+    ["Day (8am - 5pm)", "Night (6pm - 12mn)", " Whole Day (8am - 12mn)"].forEach((slot) => {
+      const timeButton = document.createElement("button");
+      timeButton.className = "time-btn";
+      timeButton.value = slot;
+      timeButton.textContent = slot;
+      timeButton.addEventListener("click", () => {
+        document.querySelectorAll(".time-btn").forEach((t) => t.classList.remove("active"));
+        timeButton.classList.add("active");
+        selectedTime = timeButton.value;
+        updateSummary();
+      });
+      timeContainer.appendChild(timeButton);
+    });
+
+    timeContainer.style.display = "flex";
+  }
+};
+
+// Update day click logic to show time slots
+const createDayElement = (text, className, date = null) => {
+  const dayElement = document.createElement("div");
+  const d_t_section = document.getElementById("date-time-main");
+  dayElement.className = `day ${className}`;
+  dayElement.textContent = text;
+  if (date && (className === "available" || className === "partially-booked")) {
+    dayElement.setAttribute("data-date", date);
+    dayElement.addEventListener("click", () => {
+      document.querySelectorAll(".day").forEach((d) => d.classList.remove("selected"));
+      dayElement.classList.add("selected");
+      selectedDate = date;
+      displayTimeSlots(date);
+      d_t_section.scrollBy(0, 500);
+      updateSummary();
+    });
+  }
+  return dayElement;
+};
+
+// Add styles for fully and partially booked days
+const styleCalendar = () => {
+  const style = document.createElement("style");
+  style.textContent = `
+    .fully-booked { background-color: red; color: black; curser: not-allowed }
+    .partially-booked { background-color: orange; color: black; }
+    .time-slot { margin: 5px; padding: 10px; border: 1px solid #ddd; cursor: pointer; }
+    .time-slot.selected { background-color: #007bff; color: white; }
+  `;
+  document.head.appendChild(style);
+};
+
+  // Handle month and year changes
+  // const handleChange = () => {
+  //   const selectedMonth = parseInt(monthSelector.value, 10);
+  //   const selectedYear = parseInt(yearSelector.value, 10);
+  //   console.log("Selected Month:", selectedMonth, "Selected Year:", selectedYear);
+  //   populateCalendar(selectedYear, selectedMonth);
+  // };
+  
+  
+  // monthSelector.addEventListener("change", handleChange);
+  // yearSelector.addEventListener("change", handleChange);
+  
+  // // Month navigation
+  // const handleMonthNavigation = () => {
+  //   prevMonthButton.addEventListener("click", () => {
+  //     const currentMonth = parseInt(monthSelector.value, 10);
+  //     if (currentMonth === 0) {
+  //       monthSelector.value = "11";
+  //       yearSelector.value = (parseInt(yearSelector.value, 10) - 1).toString();
+  //     } else {
+  //       monthSelector.value = (currentMonth - 1).toString();
+  //     }
+  //     handleChange();
+  //   });
+
+   
+
+  
+  //   nextMonthButton.addEventListener("click", () => {
+  //     const currentMonth = parseInt(monthSelector.value, 10);
+  //     if (currentMonth === 11) {
+  //       monthSelector.value = "0";
+  //       yearSelector.value = (parseInt(yearSelector.value, 10) + 1).toString();
+  //     } else {
+  //       monthSelector.value = (currentMonth + 1).toString();
+  //     }
+  //     handleChange();
+  //   });
   // };
 
-  // Populate Month and Year Selectors
   const populateSelectors = () => {
-    // Clear existing options
     monthSelector.innerHTML = "";
     yearSelector.innerHTML = "";
-
-    // Populate months
+  
     months.forEach((month, index) => {
       const option = new Option(month, index);
       if (index === currentDate.getMonth()) {
@@ -107,8 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       monthSelector.appendChild(option);
     });
-
-    // Populate years (current year ± 5 years)
+  
     const currentYear = currentDate.getFullYear();
     for (let year = currentYear - 5; year <= currentYear + 5; year++) {
       const option = new Option(year, year);
@@ -119,54 +215,99 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const fetchBookedDates = async () => {
-    try {
-      const response = await fetch("/../Pages/book-fetch.php");
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching booked dates:", error);
-      return [];
-    }
-  };
 
-  const populateCalendar = async (year, month) => {
-    const bookedDates = await fetchBookedDates();
-
-    // Clear current calendar
-    calendarDaysContainer.innerHTML = "";
-
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, month, day);
-      const formattedDate = date.toISOString().split("T")[0]; // Format: YYYY-MM-DD
-
-      // Check if the date is booked
-      const isBooked = bookedDates.includes(formattedDate);
-      const dayClass = isBooked ? "booked" : "available";
-
-      // Create day element
-      const dayElement = createDayElement(day, dayClass, formattedDate);
-      calendarDaysContainer.appendChild(dayElement);
-    }
-  };
-
-  // Populate calendar with current month
-  populateSelectors();
-  populateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-
-  // Handle month and year change
-  monthSelector.addEventListener("change", () => {
+    // Handle month and year changes
+  const handleChange = () => {
     const selectedMonth = parseInt(monthSelector.value, 10);
     const selectedYear = parseInt(yearSelector.value, 10);
     populateCalendar(selectedYear, selectedMonth);
-  });
+  };
+  
+  monthSelector.addEventListener("change", handleChange);
+  yearSelector.addEventListener("change", handleChange);
+  
+  // Month navigation
+  const handleMonthNavigation = () => {
+    prevMonthButton.addEventListener("click", () => {
+      const currentMonth = parseInt(monthSelector.value, 10);
+      if (currentMonth === 0) {
+        monthSelector.value = "11";
+        yearSelector.value = (parseInt(yearSelector.value, 10) - 1).toString();
+      } else {
+        monthSelector.value = (currentMonth - 1).toString();
+      }
+      handleChange();
+    });
 
-  yearSelector.addEventListener("change", () => {
-    const selectedMonth = parseInt(monthSelector.value, 10);
-    const selectedYear = parseInt(yearSelector.value, 10);
-    populateCalendar(selectedYear, selectedMonth);
-  });
+    nextMonthButton.addEventListener("click", () => {
+      const currentMonth = parseInt(monthSelector.value, 10);
+      if (currentMonth === 11) {
+        monthSelector.value = "0";
+        yearSelector.value = (parseInt(yearSelector.value, 10) + 1).toString();
+      } else {
+        monthSelector.value = (currentMonth + 1).toString();
+      }
+      handleChange();
+    });
+  };
+
+
+  
+// Adjust the date handling to avoid time zone issues
+const populateCalendar = (year, month) => {
+  calendarDaysContainer.innerHTML = ""; // Clear previous calendar days
+
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
+
+  // Set today to midnight local time
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
+
+  // Adjust to ensure whole day bookings are properly displayed
+  const getLocalDate = (date) => {
+    const localDate = new Date(date);
+    localDate.setHours(0, 0, 0, 0); // Normalize to midnight for accurate comparisons
+    return localDate;
+  };
+
+  // Add blank days for alignment
+  const blanks = firstDay === 0 ? 6 : firstDay - 1;
+  for (let i = 0; i < blanks; i++) {
+    calendarDaysContainer.appendChild(createDayElement("", "blank"));
+  }
+
+  // Populate the calendar days
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    const formattedDate = getLocalDate(date).toISOString().split("T")[0];
+
+    const isBooked = bookedDatesCache.some((entry) => entry.date === formattedDate);
+    const isPartial = isBooked && !bookedDatesCache.find((entry) => entry.date === formattedDate && entry.type === "wholeday");
+
+    // Adjust logic to handle past dates and booking status
+    const isPastDate = date < today;
+    let dayClass = isPastDate ? "disabled" : "available";
+    if (isBooked) dayClass = isPartial ? "partially-booked" : "fully-booked";
+
+    const dayElement = createDayElement(day, dayClass, formattedDate);
+    if (isPastDate) {
+      dayElement.style.opacity = "0.5";
+      dayElement.style.cursor = "not-allowed";
+    }
+    calendarDaysContainer.appendChild(dayElement);
+  }
+};
+
+const date = new Date(currentDate); // Assume date is stored in UTC
+  const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // Convert to local time
+
+  // Now display the localDate correctly on the calendar
+  console.log(localDate.toDateString());
+
+  console.log("Booked Dates Cache:", bookedDatesCache);
+
+
 
   // Handle Service Selection
   const handleServiceSelection = () => {
@@ -409,21 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Time Functionality
-  const handleTimeFunc = () => {
-    const timeBtn = document.querySelectorAll(".time-btn");
-
-    timeBtn.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        timeBtn.forEach((btn) => btn.classList.remove("active"));
-        btn.classList.add("active");
-        const activeBtn = document.querySelector(".time-btn.active");
-        selectedTime = activeBtn.value;
-        console.log(activeBtn.getAttribute("value"));
-        updateSummary();
-      });
-    });
-  };
+  
 
   // Next and Previous button functionality
   const handleNavigation = () => {
@@ -499,26 +626,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
-  // Validate specific section
   const validateSection = (sectionIndex) => {
     switch (sectionIndex) {
       case 0: // Service Selection
-        return selectedService !== null && selectedService.trim() !== "";
+        return selectedService && selectedService.trim();
       case 1: // Date & Time
-        return (
-          selectedDate &&
-          selectedDate.trim() !== "" &&
-          selectedTime &&
-          selectedTime.trim() !== ""
-        );
-      case 2: // Your Information
-        return validateUserInfo();
+        return selectedDate && selectedTime;
+      case 2: // User Information
+        return document.querySelector("#user-info-form")?.checkValidity();
       case 3: // Payment
-        return paymentMethod !== null && paymentMethod.trim() !== "";
+        return paymentMethod && paymentMethod.trim();
       default:
         return true;
     }
   };
+  
 
   const validateCurrentSection = () => validateSection(currentSection);
 
@@ -552,117 +674,58 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Month navigation
-  const handleMonthNavigation = () => {
-    prevMonthButton.addEventListener("click", () => {
-      const currentMonth = parseInt(monthSelector.value);
-      if (currentMonth === 0) {
-        monthSelector.value = "11";
-        yearSelector.value = (parseInt(yearSelector.value) - 1).toString();
-      } else {
-        monthSelector.value = (currentMonth - 1).toString();
-      }
-      generateCalendarDays();
-    });
-
-    nextMonthButton.addEventListener("click", () => {
-      const currentMonth = parseInt(monthSelector.value);
-      if (currentMonth === 11) {
-        monthSelector.value = "0";
-        yearSelector.value = (parseInt(yearSelector.value) + 1).toString();
-      } else {
-        monthSelector.value = (currentMonth + 1).toString();
-      }
-      generateCalendarDays();
-    });
-
-    [monthSelector, yearSelector].forEach((selector) => {
-      selector.addEventListener("change", generateCalendarDays);
-    });
-  };
-
-  // Generate Calendar Days
-  const generateCalendarDays = () => {
-    const selectedMonth = parseInt(monthSelector.value);
-    const selectedYear = parseInt(yearSelector.value);
-
-    const daysInMonth = new Date(selectedYear, selectedMonth + 1, 0).getDate();
-    const firstDay = new Date(selectedYear, selectedMonth, 1).getDay();
-
-    calendarDaysContainer.innerHTML = "";
-
-    // Add blank days for alignment
-    const blanks = firstDay === 0 ? 6 : firstDay - 1;
-    for (let i = 0; i < blanks; i++) {
-      calendarDaysContainer.appendChild(createDayElement("", "blank"));
-    }
-
-    // Add days of the month
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(selectedYear, selectedMonth, day);
-      // Disable past dates
-      const isDisabled = date < new Date(currentDate.setHours(0, 0, 0, 0));
-      const className = isDisabled ? "disabled" : "available";
-      const formattedDate = date.toISOString().split("T")[0];
-      const dayElement = createDayElement(day, className, formattedDate);
-      if (isDisabled) {
-        dayElement.style.opacity = "0.5";
-        dayElement.style.cursor = "not-allowed";
-      }
-      calendarDaysContainer.appendChild(dayElement);
-    }
-  };
-
-  // Summary Update Function
   const updateSummary = () => {
-    // Get service selection
+    // Update Service Summary
     const serviceSelect = document.getElementById("service");
-    const selectedService =
-      serviceSelect.options[serviceSelect.selectedIndex].text;
-    document.getElementById("summary-service").textContent = selectedService;
-
-    // Get selected date (assuming you store the selected date in a variable or data attribute)
+    if (serviceSelect) {
+      const selectedService = serviceSelect.options[serviceSelect.selectedIndex]?.text || "Not selected";
+      document.getElementById("summary-service").textContent = selectedService;
+    }
+  
+    // Update Date and Time Summary
     const selectedDateElement = document.querySelector(".day.selected");
-    if (selectedDateElement) {
-      document.getElementById("summary-date").textContent =
-        selectedDateElement.getAttribute("data-date");
-    }
     const selectedTimeElement = document.querySelector(".time-btn.active");
-    if (selectedTimeElement) {
-      document.getElementById("summary-time").textContent = selectedTimeElement.getAttribute("value");
-      selectedTimeElement.value;
-      selectedTime = selectedTimeElement.getAttribute("value");
-    }
-
-    // Get user information
-    const fullName = document.getElementById("full-name").value;
-
+    document.getElementById("summary-date").textContent =
+      selectedDateElement?.getAttribute("data-date") || "Not selected";
+    document.getElementById("summary-time").textContent =
+      selectedTimeElement?.value || "Not selected";
+  
+    // Update User Info Summary
+    const fullName = document.getElementById("full-name")?.value || "Not provided";
     document.getElementById("summary-name").textContent = fullName;
-
-    // const email = document.getElementById('email').value;
-    // document.getElementById('summary-email').textContent = email;
-
-    // Get payment method
+  
+    // Update Payment Summary
     const paymentMethod = document.getElementById("payment-method");
-    const selectedPayment =
-      paymentMethod.options[paymentMethod.selectedIndex].text;
-    document.getElementById("summary-payment").textContent = selectedPayment;
+    if (paymentMethod) {
+      const selectedPayment = paymentMethod.options[paymentMethod.selectedIndex]?.text || "Not selected";
+      document.getElementById("summary-payment").textContent = selectedPayment;
+    }
   };
+  
 
-  // Initialize
-  const initialize = () => {
-    handleNavigation();
-    populateSelectors();
-    generateCalendarDays();
-    handleTimeFunc();
-    handleServiceSelection();
-    handleMonthNavigation();
-    collectUserInfo();
-    collectPaymentMethod();
-    populateSummary();
-    setupSidebarNavigation(); // Add this line
-    updateSections();
+
+  const initialize = async () => {
+    try {
+      // populateSelectors();
+      styleCalendar();
+      await fetchBookedDates(); // Ensure booked dates are loaded before rendering
+      populateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+      handleNavigation();
+      populateSelectors();
+      handleServiceSelection();
+      handleMonthNavigation();
+      collectUserInfo();
+      collectPaymentMethod();
+      populateSummary();
+      setupSidebarNavigation();
+      updateSections();
+    } catch (error) {
+      console.error("Initialization error:", error);
+      alert("An error occurred while initializing the booking system.");
+    }
   };
+  
+  
 
   initialize();
 

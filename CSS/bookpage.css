@@ -303,7 +303,7 @@ section {
 }
 
 .sidebar li:hover {
-  background: var(--secondary-color);
+  background: #1269c6;
 }
 
 .sidebar li.active {
@@ -541,7 +541,7 @@ select:focus {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  margin-bottom: 15vh;
+  margin-bottom: 5vh;
   padding-inline: 0.5em;
   margin-top: calc(10vh + 7em);
 }
