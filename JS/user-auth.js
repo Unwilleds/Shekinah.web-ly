@@ -16,17 +16,22 @@ const seePassword = (inputId, iconElement) => {
   }
 };
 
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
+const signUpButton = document.querySelectorAll('#signUp');
+const signInButton = document.querySelectorAll('#signIn');
 const container = document.getElementById('container');
 
 // Check if the elements exist before adding event listeners
 if (signUpButton) {
-  signUpButton.addEventListener('click', () => container.classList.add('right-panel-active'));
+  signUpButton.forEach((btn) => {
+    btn.addEventListener('click', () => container.classList.add('right-panel-active'));
+  }) 
 }
 
 if (signInButton) {
-  signInButton.addEventListener('click', () => container.classList.remove('right-panel-active'));
+  signInButton.forEach((btn) => {
+
+    btn.addEventListener('click', () => container.classList.remove('right-panel-active'));
+  })
 }
 
 

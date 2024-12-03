@@ -496,7 +496,7 @@ section {
 }
 .m1 {
   position: absolute;
-  top: -7%;
+  top: -22em;
   left: 0;
   mix-blend-mode: exclusion;
   color: transparent;
@@ -813,6 +813,10 @@ section {
 @media only screen and (width < 69em) {
   .faq-content {
     width: 90%;
+  }
+
+  .m1{
+    top: -12em;
   }
 }
 

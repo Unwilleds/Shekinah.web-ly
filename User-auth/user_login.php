@@ -122,6 +122,7 @@ if (isset($_SESSION["user"])) {
         </div>
         <input type="submit" name="submit" id="submit" value="Sign Up" />
       </form>
+      <span class="span">Don 't have an account yet? <button class="ghost" id="signIn">Sign in</button></span>
     </div>
 
     <!-- Sign In Form -->
@@ -170,21 +171,22 @@ if (isset($_SESSION["user"])) {
 
         <span class="seePasswordToggle">
           <input type="password" name="lPassword" id="lPassword" placeholder="Enter your Password" autocomplete="false"
-            required />
+             />
           <i class="fa-solid fa-eye" onclick="seePassword('lPassword', this)"></i>
         </span>
 
         <div class="form-grps">
-          <label class="checkbx">
-            <input type="checkbox" name="rememberMe" /> Remember me
+          <label for="rememberMe" class="checkbx">
+            <input type="checkbox" id="rememberMe" /> Remember me
           </label>
-          <label class="forgot">
-            <a href="./forgot_password.php">Forgot Password?</a>
+          <label class="forgot " for="forgotPassword">
+            <a href="./forgot_password.php" id="forgotPassword">Forgot Password?</a>
           </label>
 
         </div>
         <input type="submit" name="login" value="Sign In" />
       </form>
+      <span class="span">Already have an account? <button class="ghost" id="signUp">Sign up</button></span>
     </div>
 
     <!-- Overlay -->

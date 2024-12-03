@@ -94,7 +94,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
 
           <!-- Date & Time Section -->
           <div id="date-time-section" class="section hidden">
-            <main class="date-time-main" id="date-time-main">
+            <main class="date-time-main" id="date-time-main" >
               <h2>Select Date & Time</h2>
               <section class="calendar-section" id="calendar-section">
                 <div class="calendar">

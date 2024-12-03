@@ -115,9 +115,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         </h1>
         <a href="https://www.facebook.com/shekinaheventsplace" target="_blank">Check us on facebook<span>→</span></a>
       </div>
-      <center>
-        <div class="h1"> COMING SOON!!</div>
-      </center>
+     
       <div class="list">
         <img class="ukiyo" src="../../Images/img1.jpg" alt="Shekinah"></img>
         <img class="ukiyo" src="../../Images/img2.jpg" alt="Shekinah"></img>

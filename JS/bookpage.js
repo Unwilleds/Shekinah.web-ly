@@ -665,4 +665,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   initialize();
+
 });
+// var body = document.getElementsByTagName('body')[0];
+// function disableBodyScroll() {
+//     body.style.overflowY = 'hidden';
+//     console.log("over")
+// }
+// function enableBodyScroll() {
+//     body.style.overflowY = 'auto';
+//     console.log("not")
+// }

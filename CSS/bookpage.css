@@ -409,7 +409,7 @@ select:focus {
 .date-time-main {
   height: 530px;
   max-height: 530px;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
