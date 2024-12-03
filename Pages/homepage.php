@@ -16,7 +16,11 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
   require_once __DIR__ . '/../Assets/Gsap_cdn.php';
   ?>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/../JS/homepage.js" defer></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="../CSS/homepage.css" />
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 
 </head>
 
@@ -115,33 +119,88 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
         </h1>
         <a href="https://www.facebook.com/shekinaheventsplace" target="_blank">Check us on facebook<span>→</span></a>
       </div>
-     
-      <div class="list">
-        <img class="ukiyo" src="../../Images/img1.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img2.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img3.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img4.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img5.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img6.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img7.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img8.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img9.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img10.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img11.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img12.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img13.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img14.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img15.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img16.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img17.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img18.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img19.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img20.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img21.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img22.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img23.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img24.jpg" alt="Shekinah"></img>
-        <img class="ukiyo" src="../../Images/img25.jpg" alt="Shekinah"></img>
+
+     <!-- <h1 style="justify-items: center; text-align: center;">PLACE SLIDER HERE !!</h1> -->
+        <div class="slider-frame">
+            <div class="slide-images">
+                    <div class="img-container">
+                        <img src="../../Images/img1.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img2.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img3.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img4.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img5.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img6.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img7.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img8.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img9.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img10.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img11.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img12.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img13.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img14.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img15.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img16.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img17.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img18.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img19.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img20.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img21.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img22.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img23.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img24.jpg">
+                    </div>
+                    <div class="img-container">
+                        <img src="../../Images/img25.jpg">
+                    </div>
+                    <button class="card-body-btn button"><a href="gallerypage.php">View More</a></button>
+            </div>
+        </div>
 
         <!-- <a href="https://www.facebook.com/photo.php?fbid=511398648143492&set=pb.100078200832295.-2207520000&type=3" target="_blank"> <img class="ukiyo"
             src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/458225021_511401764809847_2394389677825235738_n.jpg?stp=cp6_dst-jpg&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHmElnIBAcM3ERK3nO-ZNT0z19kClaL_vXPX2QKVov-9SEJAOJDU4BS1OPinrZYYNKDkEUt3aUXNoU1vP8dj3_c&_nc_ohc=5bb6g3L9VvkQ7kNvgEMwSR3&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=AXSisI8a3x7EF0tacaOLX7l&oh=00_AYCFyxuW8rbRFXXgr4QUyWQ3eoDRGCvm2HiTTlQFNpxTig&oe=6742313B"
@@ -250,14 +309,10 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
 
 
           <span>
-            Book your event today at Shekinah – The perfect place for every occasion! Our venue offers a relaxing
-            poolside atmosphere, exciting events, and friendly staff to make your experience
-            unforgettable. Reserve now!
+          From breathtaking views to exceptional service, our guests love it all. 
           </span>
           <span>
-            Book your event today at Shekinah – The perfect place for every occasion! Our venue offers a relaxing
-            poolside atmosphere, exciting events, and friendly staff to make your experience
-            unforgettable. Reserve now!
+          From breathtaking views to exceptional service, our guests love it all. 
           </span>
 
         </div>
@@ -275,7 +330,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <div class="quote">"Our wedding at Shekinah was a dream come true! The staff was incredibly attentive,
                   and
                   the setting was absolutely stunning. Thank you for making our special day unforgettable!"</div>
-                <div class="source">- Emily Johnson</div>
+                <div class="source">- Marc Kevin Del Mundo</div>
               </li>
               <li class="anim2">
                 <div class="quote">"We hosted our family reunion at Shekinah, and it was perfect! The pool area was a
@@ -288,7 +343,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                   what I wanted, and the staff made everything seamless. I couldn’t have asked for a better
                   experience."
                 </div>
-                <div class="source">- Allan Martin Jalooopp</div>
+                <div class="source">- Arlan Martin Jalop</div>
               </li>
               <li class="anim4">
                 <div class="quote">"I held a corporate retreat at Shekinah, and it exceeded all expectations. The
@@ -300,7 +355,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <div class="quote">"We celebrated our anniversary at Shekinah, and it was magical. The romantic
                   atmosphere
                   and exceptional service made for a memorable evening. We’ll definitely be back!"</div>
-                <div class="source">- Giansanity</div>
+                <div class="source">- Gian Khiel Nieva</div>
               </li>
 
             </ul>
@@ -329,7 +384,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
           <input id="q2" type="checkbox" class="panel">
           <label for="q2" class="plus">+</label>
           <label for="q2" class="panel-title">What payment methods are accepted?</label>
-          <div class="panel-content">We accept various payment methods, including major credit/debit cards,
+          <div class="panel-content">We accept various payment methods, including BDO, BPI, GCash, etc.,
             digital wallets and bank transfers. We also accept cash at our front desk.
             Please note that additional fees may apply for bank transfers or certain credit card transactions.
           </div>
@@ -345,6 +400,31 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
             subject to their payment fee. Please contact us for recommended caterers and event planning assistance.
           </div>
         </div>
+
+        <div class="faq-question">
+          <input id="q4" type="checkbox" class="panel">
+          <label for="q4" class="plus">+</label>
+          <label for="q4" class="panel-title">Are time extension allowed?</label>
+          <div class="panel-content">Yes, the rate is 1000 per hour, provided there isn't another client scheduled next.
+          </div>
+        </div>
+
+        <div class="faq-question">
+          <input id="q5" type="checkbox" class="panel">
+          <label for="q5" class="plus">+</label>
+          <label for="q5" class="panel-title">Are pets allowed?</label>
+          <div class="panel-content">Yes, pets are allowed, but they are not allowed in the pool.
+          </div>
+        </div>
+
+        <div class="faq-question">
+          <input id="q6" type="checkbox" class="panel">
+          <label for="q6" class="plus">+</label>
+          <label for="q6" class="panel-title">What are the policies regarding to the use of liquor?</label>
+          <div class="panel-content">You can buy liquors inside the premises, outside liquors are charge 200 per bottle, 300 per case for beer and alike.
+          </div>
+        </div>
+
       </div>
     </section>
 

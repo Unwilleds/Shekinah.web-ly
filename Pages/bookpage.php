@@ -34,44 +34,45 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
 
 
   <?php
-  if (isset($_POST["finish-button"]) === "submit") {
-    // Get input values from POST request
+  // if (isset($_POST["finish-button"]) == "submit") {
+  //   // Get input values from POST request
+  
+  //   $dom = new DOMDocument();
+  //   // Get the strong element 
+  //   $calendar = $dom->getElementById('daySelected');
+  //   // Get the attribute 
+  //   $valueDay = $calendar->getAttribute('data-date');
+  //   $event = filter_var($_POST["service"], FILTER_SANITIZE_STRING);
+  //   $full_name = filter_var($_POST["full_name"], FILTER_SANITIZE_STRING);
+  //   $guest_count = filter_var($_POST["guest"], FILTER_VALIDATE_INT);
+  //   $phone_number = filter_var($_POST["phone"], FILTER_SANITIZE_STRING);
+  //   $time = filter_var($_POST["timeActive"], FILTER_SANITIZE_STRING);
+  
+  //   // Database connection
+  //   require_once __DIR__ . "/../Database/database.php";
+  
+  //   // Use a prepared statement to prevent SQL injection
+  //   $sql = "INSERT INTO booking_record (event, full_name, guest, phone, date, time) 
+  //           VALUES (?, ?, ?, ?, ?, ?)";
+  //   $stmt = $conn->prepare($sql);
+  
+  //   if ($stmt) {
+  //     $stmt->bind_param('ssisss', $event, $full_name, $guest_count, $phone_number, $valueDay, $time);
+  
+  //     if ($stmt->execute()) {
+  //       echo "New record created successfully for event \"$event\" on \"$valueDay\" at \"$time\" with guest count \"$guest_count\".";
+  //     } else {
+  //       echo "Error: {$stmt->error}";
+  //     }
+  //   } else {
+  //     echo "Error preparing the statement: {$conn->error}";
+  //   }
+  // }
+  
 
-    $dom = new DOMDocument();
-    // Get the strong element 
-    $calendar = $dom->getElementById('daySelected');
-    // Get the attribute 
-    $valueDay = $calendar->getAttribute('data-date');
-    $event = filter_var($_POST["service"], FILTER_SANITIZE_STRING);
-    $full_name = filter_var($_POST["full_name"], FILTER_SANITIZE_STRING);
-    $guest_count = filter_var($_POST["guest"], FILTER_VALIDATE_INT);
-    $phone_number = filter_var($_POST["phone"], FILTER_SANITIZE_STRING);
-    $time = filter_var($_POST["timeActive"], FILTER_SANITIZE_STRING);
-
-    // Database connection
-    require_once __DIR__ . "/../Database/database.php";
-
-    // Use a prepared statement to prevent SQL injection
-     $sql = "INSERT INTO booking_record (event, full_name, guest, phone, date, time) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    if ($stmt) {
-        $stmt->bind_param('ssisss', $event, $full_name, $guest_count, $phone_number, $valueDay, $time);
-
-        if ($stmt->execute()) {
-            echo "New record created successfully for event \"$event\" on \"$valueDay\" at \"$time\" with guest count \"$guest_count\".";
-        } else {
-            echo "Error: {$stmt->error}";
-        }
-    } else {
-        echo "Error preparing the statement: {$conn->error}";
-    }
-}
-
-// Handle email (if applicable)
-$email = $_SESSION["email"] ?? '';
-?>
+  // Handle email (if applicable)
+  $email = $_SESSION["email"] ?? '';
+  ?>
 
 
   <div class='err'>
@@ -80,7 +81,7 @@ $email = $_SESSION["email"] ?? '';
     <div class='errors e3' style="display: none">Please complete all required fields before proceeding.</div>
     <div class='errors e4' style="display: none">Please complete all required sections before proceeding.</div>
     <div class='success e5' style="display: none">Booking completed successfully!</div>
-    <div class='success e6' style="display: none"></div>
+    <div class='danger e6' style="display: none">Booking failed! please try again.</div>
   </div>
   <main id="container">
     <div class="fv">
@@ -114,7 +115,7 @@ $email = $_SESSION["email"] ?? '';
             <section>
               <h2>Event Type Selection</h2>
               <label for="service">Amenities:</label>
-              <select id="service">
+              <select id="service" name="service">
                 <option class="disabled" value="0" disabled selected="true">
                   Please select a event type.
                 </option>
@@ -192,26 +193,74 @@ $email = $_SESSION["email"] ?? '';
               <h2>Information</h2>
               <form id="user-info-form" autocomplete="off">
                 <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" required />
+                <input type="text" id="full-name" name="full-name" required />
                 <label for="guest">Guests: </label>
-                <input type="number" id="guest" />
+                <input type="number" id="guest" name="guest" />
                 <label for="phone">Phone Number:</label>
-                <input type="number" id="phone" minlength="11" required />
+                <input type="number" id="phone" minlength="11" name="phone" required />
 
 
                 <div class="btn_container">
-                  <a class="open_button" href="#terms&conditions">Fire Away</a>
+                  <label for="terms&conditions"><input type="checkbox" id="terms&conditions"><a class="open_button"
+                      href="#!">Terms & Conditions<span style="color:red">*</span></a></label>
+
                 </div>
                 <div class="modal_info">
-                  <h1>Simple jQuery Modal</h1>
-                  <p>It may not look like much, but it still does exactly what it says straight out of the box.</p>
+                  <h1>TERMS AND CONDITION
+                  </h1>
+                  <div class="modal-body">
+                <h4>Payment Policy</h4>
+                <ul>
+                    <li>50% Reservation Fee to book the date.</li>
+                    <li>50% to pay 3 days before the event.</li>
+                    <li>Security Deposit of P10,000 to be added in the reservation fee. Refundable upon check-out after checking for any losses or damages at the property.</li>
+                    <li>Maximum capacity of the venue is 100 PAX.</li>
+                </ul>
+
+                <h4>Cancellation Policy</h4>
+                <ul>
+                    <li>30 days prior to the event: 15% (P3,750) cancellation fee shall be deducted from the refund.</li>
+                    <li>14 days prior to the event: 50% (P6,250) of the reservation fee shall be forfeited. The rest of the payment shall be refunded.</li>
+                    <li>7 days to 24 hours prior to the event: No refund shall be allowed. One-time free rebooking is allowed subject to availability. Subsequent rescheduling incurs a fee of P500.00 each.</li>
+                    <li>Cancellations caused by government lockdowns or restrictions: One-time free rescheduling is allowed, subject to availability. No refund is available.</li>
+                </ul>
+
+                <h4>Venue Design and Styling</h4>
+                <ul>
+                    <li>Ceiling treatments, adhesives, and nailing are not allowed.</li>
+                    <li>Balloons or flowers are not allowed to float in the pool.</li>
+                    <li>Backdrops present in the venue are free to use.</li>
+                    <li>Buffet and dining tables are non-movable except for furniture beside the pool.</li>
+                </ul>
+
+                <h4>Time</h4>
+                <ul>
+                    <li>Venue usage is 16 hours, including ingress and egress, between 8:00 AM and 12:00 MN.</li>
+                    <li>Time extension: P1,000 per hour.</li>
+                </ul>
+
+                <h4>Liquor and Corkage</h4>
+                <ul>
+                    <li>Liquors are available for sale inside the premises. Bringing liquor incurs corkage fees.</li>
+                    <li>Mobile bar corkage: P1,000.00.</li>
+                    <li>Free corkage for one party cart using electricity. Succeeding carts: P500 each.</li>
+                </ul>
+
+                <h4>Additional Notes</h4>
+                <ul>
+                    <li>Inflatable pool/playground: P1,000 each.</li>
+                    <li>Catering services must leave the venue in the same condition as arrival. Damages or losses will be charged to the client.</li>
+                    <li>Pets are not allowed to swim in the pool.</li>
+                    <li>Please treat the venue as your own home.</li>
+                </ul>
+            </div>
                 </div>
                 <div class="modal_overlay">
                 </div>
 
 
                 <label for="notes">Notes:</label>
-                <textarea name="notes" id="notes" rows="4"></textarea>
+                <textarea name="notes" id="notes" name="notes" rows="4"></textarea>
               </form>
             </section>
             <div class="navigation-buttons">
@@ -290,9 +339,10 @@ $email = $_SESSION["email"] ?? '';
             </section>
             <div class="navigation-buttons">
               <button id="summary-prev" class="prev-button">Previous</button>
-              <button id="finish-button" class="finish-button" value="submit">
+              <button id="finish-button" class="finish-button">
                 Finish Booking
               </button>
+
             </div>
           </div>
         </div>
@@ -305,6 +355,8 @@ $email = $_SESSION["email"] ?? '';
   require_once __DIR__ . '/../Assets/Html_footer.php';
   ?>
   <script src="../JS/bookpage.js" defer></script>
+
+
 </body>
 
 </html>

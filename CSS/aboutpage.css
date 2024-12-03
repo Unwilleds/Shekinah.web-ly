@@ -37,10 +37,58 @@
   --quotes-animation-delay: 5s;
 }
 
+.gallery-container {
+  flex: 1;
+  padding-top: 100px; /* Adds space below the navbar */
+  position: relative;
+  z-index: 4;
+  background: var(--base-color);
+  margin-bottom: 60vh;
+  border-radius: 30px;
+  padding-bottom: 5em;
+}
 
-body {
-  background-color: var(--bg-color);
-  z-index: -2;
+.gallery-title {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 400px; /* Increased image height */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
 }
 
 #container {
@@ -69,6 +117,34 @@ body {
   left: 0;
   object-fit: contain;
   filter: brightness(80%);
+}
+
+.contact-us{
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px; 
+}
+.contact-info {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 10px; 
+  flex-wrap: wrap;
+}
+
+.contact-info img.email-icon {
+  height: 24px;
+  margin-right: 10px; 
+}
+
+.contact-info img.call-icon {
+  height: 19px;
+  margin-right: 10px; 
+}
+
+.contact-info p {
+  margin: 0; 
+  font-size: 16px;
+  word-break: break-word; 
 }
 
 .parallax-btn {

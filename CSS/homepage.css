@@ -317,11 +317,11 @@ section {
   background-image: url("../Images/img26.jpg");
 }
 .main-card:nth-child(2)::before {
-  background-image: url("../Images/img27.jpg");
+  background-image: url("../Images/bday.jpg");
 
 }
 .main-card:nth-child(3)::before {
-  background-image: url("../Images/pol.jpg");
+  background-image: url("../Images/fam.jpg");
   background-position: center;
 
 }
@@ -479,7 +479,7 @@ section {
   text-transform: uppercase;
   display: inline-block;
   padding-left: -10%;
-  animation: marquee-animation 60s linear infinite;
+  animation: marquee-animation 20s linear infinite;
 }
 
 .marquee-body {
@@ -498,7 +498,6 @@ section {
   position: absolute;
   top: -22em;
   left: 0;
-  mix-blend-mode: exclusion;
   color: transparent;
   background-clip: text;
   -webkit-text-stroke-width: 2px;
@@ -836,4 +835,67 @@ section {
   padding: 25vh 0;
   width: 100%;
   font-weight: 600;
+}
+
+.slider-frame{
+  overflow: hidden;
+  height: 800px;
+  width: 1200px;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+/*---------- SLIDE ANIMATION --------------*/
+
+
+@keyframes slide_animation{
+  0% {left:0px;}
+  10% {left:0px;}
+  20% {left:1200px;}
+  30% {left:1200px;}
+  40% {left: 2400px;}
+  50% {left: 2400px;}
+  60% {left: 1200px;}
+  70% {left: 1200px;}
+  80% {left: 0px;}
+  90% {left: 0px;}
+  100% {left:0px;}
+}
+
+@-webkit-keyframes slide_animation{
+  0% {left:0px;}
+  10% {left:0px;}
+  20% {left:1200px;}
+  30% {left:1200px;}
+  40% {left: 2400px;}
+  50% {left: 2400px;}
+  60% {left: 1200px;}
+  70% {left: 1200px;}
+  80% {left: 0px;}
+  90% {left: 0px;}
+  100% {left:0px;}
+}
+
+.slide-images{
+  width: 3600px;
+  height: 800px;
+  margin: 0 0 0 -2400px;
+  position: relative;
+  -webkit-animation-name: slide_animation;
+  animation-name: slide_animation;
+  -webkit-animation-duration: 33s;
+  animation-duration: 33s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
+}
+
+.img-container{
+  height: 800px;
+  width: 1200px;
+  position: relative;
+  float: left;
 }

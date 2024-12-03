@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const e3 = document.querySelector(".e3");
   const e4 = document.querySelector(".e4");
   const e5 = document.querySelector(".e5");
+  const e6 = document.querySelector(".e6");
 
   let currentSection = 0;
   let selectedDate = null;
@@ -86,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
         availableSlots.push("Day (8am - 5pm)");
       } else if (type === "Whole Day (8am - 12mn)") {
         availableSlots.length = 0; // All slots unavailable
+        console.log("no slots");
       } else {
         availableSlots.push(
           "Day (8am - 5pm)",
@@ -103,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document
             .querySelectorAll(".time-btn")
             .forEach((t) => t.classList.remove("active"));
+          timeButton.setAttribute("id", "timeActive");
+
           timeButton.classList.add("active");
           selectedTime = timeButton.value;
           updateSummary(); // Update reservation summary
@@ -172,76 +176,85 @@ document.addEventListener("DOMContentLoaded", () => {
   const styleCalendar = () => {
     const style = document.createElement("style");
     style.textContent = `
-    .fully-booked { background-color: red; color: black; curser: not-allowed }
-    .partially-booked { background-color: orange; color: black; }
-    .time-slot { margin: 5px; padding: 10px; border: 1px solid #ddd; cursor: pointer; }
-    .time-slot.selected { background-color: #007bff; color: white; }
-  `;
+      .fully-booked { background-color: red; color: black; cursor: not-allowed; }
+      .partially-booked { background-color: orange; color: black; cursor: pointer; }
+      .disabled { opacity: 0.5; cursor: not-allowed; }
+      .time-slot { margin: 5px; padding: 10px; border: 1px solid #ddd; cursor: pointer; }
+      .time-slot.selected { background-color: #007bff; color: white; }
+    `;
     document.head.appendChild(style);
   };
 
-  // Handle month and year changes
-  // const handleChange = () => {
-  //   const selectedMonth = parseInt(monthSelector.value, 10);
-  //   const selectedYear = parseInt(yearSelector.value, 10);
-  //   console.log("Selected Month:", selectedMonth, "Selected Year:", selectedYear);
-  //   populateCalendar(selectedYear, selectedMonth);
-  // };
+  // Function to populate the calendar and apply the booking logic
+const populateCalendar = (year, month) => {
+  calendarDaysContainer.innerHTML = ""; // Clear previous calendar days
 
-  // monthSelector.addEventListener("change", handleChange);
-  // yearSelector.addEventListener("change", handleChange);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDay = new Date(year, month, 1).getDay();
 
-  // // Month navigation
-  // const handleMonthNavigation = () => {
-  //   prevMonthButton.addEventListener("click", () => {
-  //     const currentMonth = parseInt(monthSelector.value, 10);
-  //     if (currentMonth === 0) {
-  //       monthSelector.value = "11";
-  //       yearSelector.value = (parseInt(yearSelector.value, 10) - 1).toString();
-  //     } else {
-  //       monthSelector.value = (currentMonth - 1).toString();
-  //     }
-  //     handleChange();
-  //   });
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
 
-  //   nextMonthButton.addEventListener("click", () => {
-  //     const currentMonth = parseInt(monthSelector.value, 10);
-  //     if (currentMonth === 11) {
-  //       monthSelector.value = "0";
-  //       yearSelector.value = (parseInt(yearSelector.value, 10) + 1).toString();
-  //     } else {
-  //       monthSelector.value = (currentMonth + 1).toString();
-  //     }
-  //     handleChange();
-  //   });
-  // };
-
-  const populateSelectors = () => {
-    monthSelector.innerHTML = "";
-    yearSelector.innerHTML = "";
-
-    months.forEach((month, index) => {
-      const option = new Option(month, index);
-      if (index === currentDate.getMonth()) {
-        option.selected = true;
-      }
-      monthSelector.appendChild(option);
-    });
-
-    const currentYear = currentDate.getFullYear();
-    for (let year = currentYear - 5; year <= currentYear + 5; year++) {
-      const option = new Option(year, year);
-      if (year === currentYear) {
-        option.selected = true;
-      }
-      yearSelector.appendChild(option);
-    }
+  const getLocalDate = (date) => {
+    const localDate = new Date(date);
+    localDate.setHours(0, 0, 0, 0); // Normalize to midnight for accurate comparisons
+    return localDate;
   };
 
-  // Handle month and year changes
+  // Add blank days for alignment
+  const blanks = firstDay === 0 ? 6 : firstDay - 1;
+  for (let i = 0; i < blanks; i++) {
+    calendarDaysContainer.appendChild(createDayElement("", "blank"));
+  }
+
+  // Populate the calendar days
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    const formattedDate = getLocalDate(date).toISOString().split("T")[0];
+
+    // Check if both Day and Night slots are booked
+    const dayBooking = bookedDatesCache.find(
+      (entry) => entry.date === formattedDate && entry.type === "Day (8am - 5pm)"
+    );
+    const nightBooking = bookedDatesCache.find(
+      (entry) => entry.date === formattedDate && entry.type === "Night (6pm - 12mn)"
+    );
+
+    const isBooked = dayBooking || nightBooking;
+    const isPartial = isBooked && !(dayBooking && nightBooking);
+
+    // Check if both day and night are booked for the same date (fully booked)
+    const isFullyBooked = dayBooking && nightBooking;
+
+    // Determine class based on booking status
+    let dayClass = "available";
+    if (isFullyBooked) {
+      dayClass = "fully-booked"; // Mark as fully booked (red)
+    } else if (isPartial) {
+      dayClass = "partially-booked"; // Partially booked (orange)
+    }
+
+    const isPastDate = getLocalDate(date) < getLocalDate(today);
+    if (isPastDate) {
+      dayClass = "disabled"; // Disable past dates
+    }
+
+    const dayElement = createDayElement(day, dayClass, formattedDate);
+
+    // Disable past dates and apply opacity
+    if (isPastDate) {
+      dayElement.style.opacity = "0.5";
+      dayElement.style.cursor = "not-allowed";
+    }
+
+    calendarDaysContainer.appendChild(dayElement);
+  }
+};
+
   const handleChange = () => {
     const selectedMonth = parseInt(monthSelector.value, 10);
     const selectedYear = parseInt(yearSelector.value, 10);
+    console.log("Selected Month:", selectedMonth, "Selected Year:", selectedYear);
     populateCalendar(selectedYear, selectedMonth);
   };
 
@@ -273,57 +286,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Adjust the date handling to avoid time zone issues
-  const populateCalendar = (year, month) => {
-    calendarDaysContainer.innerHTML = ""; // Clear previous calendar days
+  const populateSelectors = () => {
+    monthSelector.innerHTML = "";
+    yearSelector.innerHTML = "";
 
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDay = new Date(year, month, 1).getDay();
-
-    // Set today to midnight local time
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set time to midnight for comparison
-
-    // Adjust to ensure whole day bookings are properly displayed
-    const getLocalDate = (date) => {
-      const localDate = new Date(date);
-      localDate.setHours(0, 0, 0, 0); // Normalize to midnight for accurate comparisons
-      return localDate;
-    };
-
-    // Add blank days for alignment
-    const blanks = firstDay === 0 ? 6 : firstDay - 1;
-    for (let i = 0; i < blanks; i++) {
-      calendarDaysContainer.appendChild(createDayElement("", "blank"));
-    }
-
-    // Populate the calendar days
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, month, day);
-      const formattedDate = getLocalDate(date).toISOString().split("T")[0];
-
-      const isBooked = bookedDatesCache.some(
-        (entry) => entry.date === formattedDate
-      );
-      const isPartial =
-        isBooked &&
-        !bookedDatesCache.find(
-          (entry) => entry.date === formattedDate && entry.type === "wholeday"
-        );
-
-      // Adjust logic to handle past dates and booking status
-      const isPastDate = getLocalDate(date) < getLocalDate(today);
-      let dayClass = isPastDate ? "disabled" : "available";
-      if (isBooked) dayClass = isPartial ? "partially-booked" : "fully-booked";
-
-      const dayElement = createDayElement(day, dayClass, formattedDate);
-      if (isPastDate) {
-        dayElement.style.opacity = "0.5";
-        dayElement.style.cursor = "not-allowed";
+    months.forEach((month, index) => {
+      const option = new Option(month, index);
+      if (index === currentDate.getMonth()) {
+        option.selected = true;
       }
-      calendarDaysContainer.appendChild(dayElement);
+      monthSelector.appendChild(option);
+    });
+
+    const currentYear = currentDate.getFullYear();
+    for (let year = currentYear - 5; year <= currentYear + 5; year++) {
+      const option = new Option(year, year);
+      if (year === currentYear) {
+        option.selected = true;
+      }
+      yearSelector.appendChild(option);
     }
   };
+
 
   const date = new Date(currentDate); // Assume date is stored in UTC
   const localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000); // Convert to local time
@@ -461,67 +445,69 @@ document.addEventListener("DOMContentLoaded", () => {
           payment.style.display = "flex";
           paymentOnlineMethodSelected.style.display = "flex";
           paymentOnsiteMethodSelected.style.display = "none";
+          return true; // Stop further processing
+
         } else {
           paymentOnsiteMethodSelected.style.display = "flex";
           payment.style.display = "none";
           paymentOnlineMethodSelected.style.display = "none";
+         
+          payNowBtn.addEventListener("click", () => {
+            // Get the selected service option for precise pricing
+            const selectedServiceOption =
+              serviceDropdown.options[serviceDropdown.selectedIndex];
+            const prices = selectedServiceOption.getAttribute("data-price");
+    
+            // Remove any non-digit characters and parse the prices
+            const cleanSelectedPrice = prices.replace(/[^\d]/g, "");
+            const selectedPriceValue = parseInt(cleanSelectedPrice) || 0;
+            const amountValue = parseInt(amount.value) || 0;
+    
+            // Validate payment amount
+            if (amountValue < selectedPriceValue) {
+              // Create a more specific error message based on the service type
+              const serviceName = selectedServiceOption.text;
+             
+              e1.style.display = "block";
+              e1.innerHTML = `Insufficient payment for ${serviceName}. Minimum amount required is ₱${selectedPriceValue.toLocaleString()}.`
+              setTimeout(() => {
+                e1.style.display = "none";
+              }, 3000);
+              amount.value = ""; // Clear the input
+              balanceElement.textContent = "0"; // Reset balance
+              return false; // Stop further processing
+            } 
+    
+            
+    
+            // If amount is sufficient, proceed with payment processing
+            document.querySelector(".online-payment").style.display = "flex";
+            document.querySelector(
+              ".paid"
+            ).textContent = `${amountValue.toLocaleString()}`;
+    
+            // Calculate the balance
+            const balance = amountValue - selectedPriceValue;
+    
+            // Update the balance element
+            balanceElement.textContent = `₱ ${balance.toLocaleString()}`;
+    
+            payNowBtn.setAttribute("disabled", true);
+            amount.setAttribute("readonly", true);
+          });
+          if (document.querySelector(".online-payment").style.display === "none"){
+            console.log("oo na");
+            return false;
+          } 
         }
         updateSummary();
         console.log(paymentMethod);
       });
 
-      payNowBtn.addEventListener("click", () => {
-        // Get the selected service option for precise pricing
-        const selectedServiceOption =
-          serviceDropdown.options[serviceDropdown.selectedIndex];
-        const prices = selectedServiceOption.getAttribute("data-price");
-
-        // Remove any non-digit characters and parse the prices
-        const cleanSelectedPrice = prices.replace(/[^\d]/g, "");
-        const selectedPriceValue = parseInt(cleanSelectedPrice) || 0;
-        const amountValue = parseInt(amount.value) || 0;
-
-        // Validate payment amount
-        if (amountValue < selectedPriceValue) {
-          // Create a more specific error message based on the service type
-          const serviceName = selectedServiceOption.text;
-         
-          e1.style.display = "block";
-          e1.innerHTML = `Insufficient payment for ${serviceName}. Minimum amount required is ₱${selectedPriceValue.toLocaleString()}.`
-          setTimeout(() => {
-            e1.style.display = "none";
-          }, 3000);
-          amount.value = ""; // Clear the input
-          balanceElement.textContent = "0"; // Reset balance
-          return false; // Stop further processing
-        } 
-
-        
-
-        // If amount is sufficient, proceed with payment processing
-        document.querySelector(".online-payment").style.display = "flex";
-        document.querySelector(
-          ".paid"
-        ).textContent = `${amountValue.toLocaleString()}`;
-
-        // Calculate the balance
-        const balance = amountValue - selectedPriceValue;
-
-        // Update the balance element
-        balanceElement.textContent = `₱ ${balance.toLocaleString()}`;
-
-        payNowBtn.setAttribute("disabled", true);
-        amount.setAttribute("readonly", true);
-      });
+     return true;
       
     }
-    if (document.querySelector(".online-payment").style.display === "none"){
-      console.log("oo na");
-      return false;
-    } else {
-      console.log("tangina");
-      return true;
-    }
+   
   };
   
 
@@ -744,12 +730,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const initialize = async () => {
     try {
+      populateSelectors();
       // populateSelectors();
       styleCalendar();
       await fetchBookedDates(); // Ensure booked dates are loaded before rendering
       populateCalendar(currentDate.getFullYear(), currentDate.getMonth());
       handleNavigation();
-      populateSelectors();
       handleServiceSelection();
       handleMonthNavigation();
       collectUserInfo();
@@ -802,7 +788,7 @@ var modal = (function () {
 
   return {
     center: function () {
-      var top = Math.max($window.height() - $modal.outerHeight(), 0) / 2;
+      var top = Math.max($window.height() - $modal.outerHeight(), 0) / 2.25;
       var left = Math.max($window.width() - $modal.outerWidth(), 0) / 2;
       $modal.css({
         top: top + $window.scrollTop(),
@@ -829,3 +815,59 @@ var modal = (function () {
     },
   };
 })();
+
+
+document.getElementById("finish-button").addEventListener("click", function() {
+  // Collect data from inputs
+  const daySelected = document.getElementById("daySelected").getAttribute("data-date"); // Assuming daySelected exists
+  const fullName = document.querySelector("input[name='full-name']").value;
+  const service = document.querySelector("#service").value;
+  const guestCount = document.querySelector("input[name='guest']").value;
+  const phone = document.querySelector("input[name='phone']").value;
+  const timeActive = document.querySelector("#timeActive").value;
+
+  // Validate input fields (Optional)
+  if (!fullName || !service || !guestCount || !phone || !timeActive) {
+      alert("Please fill in all fields.");
+      return;
+  }
+
+  // Create data object
+  const formData = {
+      daySelected: daySelected,
+      full_name: fullName,
+      service: service,
+      guest: guestCount,
+      phone: phone,
+      timeActive: timeActive
+  };
+
+  // Send data to server using fetch API
+  fetch("book-fetch-times.php", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+  })
+  .then(response => response.text()) // Process server response
+  .then(data => {
+      console.log(data); // Display server response in console
+      document.getElementById("finish-button").addEventListener("click", () => {
+      e5.style.display = "block";
+      setTimeout(() => {
+        e5.style.display = "none";
+      }, 3000);
+    });
+    window.location.reload()
+  })
+  .catch(error => {
+      console.error("Error:", error);
+      document.getElementById("finish-button").addEventListener("click", () => {
+      e6.style.display = "block";
+      setTimeout(() => {
+        e6.style.display = "none";
+      }, 3000);
+    });
+  });
+});
