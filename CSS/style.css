@@ -705,6 +705,38 @@ hr {
   font-weight: 600;
 }
 
+.err{
+  position: fixed;
+  top: 6em;
+  right: 1%;
+  z-index:9999999999999999;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
 
-/* TOASTS */
-
+.errors{
+  padding: .5em 0.8em ;
+  height: fit-content;
+  background-color: rgb(255, 132, 132);
+  border-radius: 5px;
+  border: 1px solid rgb(255, 25, 25);
+  margin-bottom: 10px;
+  width: fit-content;
+  color: white;
+  font-size: .8em;
+}
+.success{
+  padding: .5em 0.8em ;
+  height: fit-content;
+  background-color: rgb(161, 255, 126);
+  border-radius: 5px;
+  border: 1px solid rgb(54, 255, 54);
+  margin-bottom: 10px;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: white;
+  font-size: .8em;
+}

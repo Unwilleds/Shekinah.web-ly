@@ -20,6 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextButtons = document.querySelectorAll(".next-button");
   const prevButtons = document.querySelectorAll(".prev-button");
 
+  const e1 = document.querySelector(".e1");
+  const e2 = document.querySelector(".e2");
+  const e3 = document.querySelector(".e3");
+  const e4 = document.querySelector(".e4");
+  const e5 = document.querySelector(".e5");
+
   let currentSection = 0;
   let selectedDate = null;
   let selectedTime = null;
@@ -473,7 +479,10 @@ const date = new Date(currentDate); // Assume date is stored in UTC
     
         // Optional: Add validation for insufficient payment
         if (balance < 0) {
-            alert("Insufficient payment amount!");
+          e2.style.display = "block";
+          setTimeout(() => {
+           e2.style.display = "none";
+          }, 3000);
         }
     
       });
@@ -515,7 +524,10 @@ const date = new Date(currentDate); // Assume date is stored in UTC
         !userInfo["full-name"] ||
         !paymentMethod
       ) {
-        alert("Please fill all required fields before finishing.");
+        e1.style.display = "block";
+        setTimeout(() => {
+          e1.style.display = "none";
+         }, 3000);
         return;
       }
 
@@ -531,7 +543,10 @@ const date = new Date(currentDate); // Assume date is stored in UTC
     });
 
     finishButton.addEventListener("click", () => {
-      alert("Booking completed successfully!");
+      e5.style.display = "block";
+      setTimeout(() => {
+        e5.style.display = "none";
+       }, 3000);
     });
   };
 
@@ -555,7 +570,10 @@ const date = new Date(currentDate); // Assume date is stored in UTC
 
         updateSections();
       } else if (direction === "next") {
-        alert("Please complete all required fields before proceeding.");
+        e3.style.display = "block";
+        setTimeout(() => {
+          e3.style.display = "none";
+         }, 3000);
       }
     };
 
@@ -589,7 +607,10 @@ const date = new Date(currentDate); // Assume date is stored in UTC
 
           updateSections();
         } else {
-          alert("Please complete all required sections before proceeding.");
+          e4.style.display = "block";
+          setTimeout(() => {
+            e4.style.display = "none";
+           }, 3000);
         }
       });
     });

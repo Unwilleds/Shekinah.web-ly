@@ -48,7 +48,6 @@
 </head>
 
 <body>
-<?php require_once __DIR__ . '/../Assets/toasts.php'; ?>
 
     <div class="auth-container container">
         <a class="a" href="./user_login.php"><i class="fa-solid fa-arrow-left"></i></a>
@@ -90,21 +89,22 @@
                     try {
                         $mail->send();
                         
-                        echo "<script>
-                        displayToastNotification('A reset link has been sent to your email address., 'fa-check', '#27ae60', 'slide-in-slide-out');
-                    </script>";
+                    
+                    echo "<div class='err'><div class='success'>A reset link has been sent to your email address.</div></div>";
                         unset($_POST['email']);
                     } catch (Exception $e) {
                         echo "<script>
-                        displayToastNotification('Message could not be sent.', 'fa-xmark', '#c0392b', 'slide-in-slide-out');
+                       
                         console.log(" . htmlspecialchars($mail->ErrorInfo) . ");
                     </script>";
+                    echo "<div class='err'><div class='success'>Message could not be sent.</div></div>";
                     }
                 } else {
                     if (strlen($email) !== 0) {
                         echo "<script>
-                        displayToastNotification('No account found with that email., 'fa-check', '#27ae60', 'slide-in-slide-out');
+                        displayToastNotification(', 'fa-check', '#27ae60', 'slide-in-slide-out');
                     </script>";
+                    echo "<div class='err'><div class='success'>No account found with that email.</div></div>";
                     }
                 }
             }

@@ -73,17 +73,12 @@ if (isset($_SESSION["user"])) {
 
           // If errors, display toast notifications
           if (!empty($errors)) {
+            echo "<div class='err'>";
             foreach ($errors as $error) {
               
-              echo '<div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="d-flex">
-    <div class="toast-body">
-     $error
-    </div>
-    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-</div>';
+              echo " <div class='errors'>$error</div>";
             }
+            echo "</div>";
           } else {
             // Insert user into the database if no errors
             $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
@@ -93,15 +88,11 @@ if (isset($_SESSION["user"])) {
             if ($stmt->execute()) {
               $_SESSION["user"] = "yes";
               $_SESSION["full_name"] = $fullName;
-              echo "<script>
-                displayToastNotification('Registration successful!', 'fa-check', '#28a745', 'fade-in');
-            </script>";
+              echo "<div class='err'><div class='success'>You are registered successfully</div></div>";
               header("Location: /Pages/homepage.php");
               exit();
             } else {
-              echo "<script>
-                displayToastNotification('Something went wrong', 'fa-xmark', '#c0392b', 'slide-in-slide-out');
-            </script>";
+              echo "<div class='err'><div class='errors'>Something went wrong</div></div>";
             }
           }
         }
@@ -154,7 +145,7 @@ if (isset($_SESSION["user"])) {
           $stmt->execute();
           $result = $stmt->get_result();
           $user = $result->fetch_assoc();
-
+          if($user){
           if ($user && password_verify($lPassword, $user["password"])) {
             $_SESSION["user"] = "yes";
             $_SESSION["full_name"] = $user["full_name"];
@@ -166,8 +157,11 @@ if (isset($_SESSION["user"])) {
             header("Location: /Pages/homepage.php");
             exit();
           } else {
-            echo "<div class='errors'>Invalid email or password.</div>";
+            echo '<div class="err"><div class="errors">Password does not match</div></div>';
           }
+        } else {
+          echo "<div class='err'><div class='errors'>Email does not match</div></div>";
+        }
         }
         ?>
 

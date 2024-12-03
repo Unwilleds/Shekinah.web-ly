@@ -308,7 +308,7 @@ hr {
   }
 
   .abt-mission .img{
-    width: 100%;
+    width: 100% !important;
   }
 
   .abt-mission .ukiyo {
@@ -324,7 +324,7 @@ hr {
   }
   
 }
-@media only screen and (width < 79.5em){
+@media only screen and (width < 80.5em){
   
   .main-box iframe{
     max-width: 31.25em;
@@ -336,6 +336,10 @@ hr {
  
   gap: 3em;
 
+}
+
+.abt-mission .img{
+  width: 50%;
 }
 
 
