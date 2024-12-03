@@ -47,7 +47,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <span class="contents-p stagger" style="--delay: 2s;">A good place for making unforgettable,
                     joyful
                     moments.</span>
-              
+
             </div>
             <!-- <img class="ukiyo" src="../../Images/bg4.jpg" alt=""> -->
         </div>
@@ -111,7 +111,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 </p>
                 <hr>
                 <h1> Our Values</h1>
-                <span class="abt-p">
+                <span class="abt-p" id="contact">
                     <p>
                         <i>Excellence:</i>
                     </p>
@@ -129,11 +129,18 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
                 <hr>
 
                 <h1>Contact Us</h1>
-                <p>
+                <p class="contact-us">
                     If you’re ready to bring your event vision to life, reach out to us today! Whether you’re planning a
                     wedding, a corporate event, or a special celebration, Shekinah has everything you need to make it
                     unforgettable.</p>
-                    
+                <div class="contact-info">
+                    <img src="/Images/email.png" alt="email icon" class="email-icon">
+                    <p>shekinaheventsplace@gmail.com</p>
+                </div>
+                <div class="contact-info">
+                    <img src="/Images/call.png" alt="call icon" class="call-icon">
+                    <p>0917 206 0646</p>
+                </div>
             </div>
         </section>
     </main>
