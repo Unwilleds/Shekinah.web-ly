@@ -317,11 +317,11 @@ section {
   background-image: url("../Images/img26.jpg");
 }
 .main-card:nth-child(2)::before {
-  background-image: url("../Images/img27.jpg");
+  background-image: url("../Images/bday.jpg");
 
 }
 .main-card:nth-child(3)::before {
-  background-image: url("../Images/pol.jpg");
+  background-image: url("../Images/fam.jpg");
   background-position: center;
 
 }
@@ -479,7 +479,7 @@ section {
   text-transform: uppercase;
   display: inline-block;
   padding-left: -10%;
-  animation: marquee-animation 60s linear infinite;
+  animation: marquee-animation 20s linear infinite;
 }
 
 .marquee-body {
@@ -498,7 +498,6 @@ section {
   position: absolute;
   top: -22em;
   left: 0;
-  mix-blend-mode: exclusion;
   color: transparent;
   background-clip: text;
   -webkit-text-stroke-width: 2px;
