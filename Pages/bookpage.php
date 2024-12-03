@@ -120,14 +120,11 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
               <center>
                 <h1>Time</h1>
               </center>
-              <button class="time-btn" value="Day (8am - 5pm)" aria-pressed="false">
-                Day (8am - 5pm)
+              <button class="time-btn" value="Day (8am - 5pm)">
               </button>
-              <button class="time-btn" value="Night (6pm - 12mn)" aria-pressed="false">
-                Night (6pm - 12mn)
+              <button class="time-btn" value="Night (6pm - 12mn)" >
               </button>
-              <button class="time-btn" value="Whole Day (8am - 12mn)" aria-pressed="false">
-                Whole Day (8am - 12mn)
+              <button class="time-btn" value="Whole Day (8am - 12mn)">
               </button>
             </section>
           </main>
@@ -249,7 +246,7 @@ $username = $isLoggedIn ? $_SESSION["full_name"] : null;
     require_once __DIR__ . '/../Assets/footer.php';
     require_once __DIR__ . '/../Assets/Html_footer.php';
     ?>
-  <script src="../JS/bookpage.js"></script>
+  <script src="../JS/bookpage.js" defer></script>
 </body>
 
 </html>
